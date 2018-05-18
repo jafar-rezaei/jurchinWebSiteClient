@@ -1,0 +1,77 @@
+	
+	<!-- Modals Core -->
+	<div class="modal fade" id="JurchinMainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form role="form" class="jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="JurchinModalTitle"></h4>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+						<div id="JurchinModalContent"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">لغو</button>
+						<button type="submit" class="btn btn-info btn-simple">تایید</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Modals Over Core -->
+	<div class="modal fade" id="JurchinOverModal" tabindex="-1" role="dialog" aria-labelledby="myOverModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form role="form" class="jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="JurchinModalOverTitle"></h4>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+						<div id="JurchinModalOverContent"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-simple" data-dismiss="modal">لغو</button>
+						<button type="submit" class="btn btn-info btn-simple">تایید</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Javascripts -->
+	{% block javascripts %}
+
+	<script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/material.min.js') }}"></script>
+	<script src="{{ asset('js/material-dashboard.js') }}"></script>
+
+	{{extraJs|evaluate}}
+
+
+	<!-- Google analytics -->
+	<script type="text/javascript">
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-96513105-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+	<!-- core jurchin js -->
+	<script src="{{ asset('js/jurchin.js') }}"></script>
+	{% endblock %}
+
+
+	{{ endDom|raw|evaluate }}
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<form role="form" action="{{siteurl}}Dashboard/Post/Add" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="action" value="new" />
+						<div class="row">
+							<div class="col-md-8 col-sm-12 col-xs-12">
+								<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<h4 class="title">{{pageTitle}}</h4>
+											<p class="category">{{pageDes}}</p>
+										</div>
+									</div>
+									<div class="card-content">
+
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">عنوان مطلب</label>
+													<input type="text" name="postTitle" value="{{post.title}}" class="form-control" required >
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-labels">دسته بندی</label>
+													<select name="postCategory" style="width: 98%;margin:auto 1%">
+													<option value="0" {% if post.cat == 0 %}selected{% endif %}>عمومی</option>
+													{% for cat in cats %}
+														<option value="{{cat.cid}}" {% if post.cat == cat.cid %}selected{% endif %}>{{cat.name}}</option>
+													{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-labels">نوع درج</label>
+													<select name="postKind" style="width: 98%;margin:auto 1%">
+														<option value="post" {% if post.kind == "post" %}selected{% endif %}>نوشته</option>
+														<option value="sendable" {% if post.kind == "sendable" %}selected{% endif %}>محصول فیزیکی</option>
+														<option value="download" {% if post.kind == "download" %}selected{% endif %}>محصول دیجیتال</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label"> محتوایی که می خواهید در پست درج کنید</label>
+													<textarea class="form-control mceEditor" rows="5" name="postContent">{{post.content}}</textarea>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" value="1" name="postActiveCommentsPerm" {% if post.comment_active_perm != "1" %}{% else %}checked{% endif %} />
+															نظرات فعال باشد؟
+														</label>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+										<button type="submit" class="btn btn-primary pull-right">{% if action =="Add" %}درج مطلب{% else %}ویرایش نوشته{% endif %}</button>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-12 col-xs-12">
+
+								<!-- Upload picture part -->
+								<div class="card">
+
+									<div class="content center">
+										<h4 class="card-title">تصویر مطلب</h4>
+										<h6 class="category text-gray irsans">حداکثر تا ۵مگابایت</h6>
+										<label for="uploadFile" id="previewAX" class="card-content uploadPicPost">
+											{% if post.image != "" %}<img src="{{usersite}}/uploads/{{post.image}}" />{% else %}انتخاب عکس{% endif %}
+										</label>
+										<input type="file" name="postPic" class="file_Upload" id="uploadFile" style="display: none;" required />
+									</div>
+								</div>
+
+
+								<!-- Add tags to post -->
+								<div class="card center" style="margin-top: 0">
+
+									<div class="content">
+
+										<input type="hidden" id="tagsInput" name="postTags" />
+
+										<h4 class="card-title">تگ ها</h4>
+										<h6 class="category text-gray irsans">واژه های کلیدی پست</h6>
+										<p class="card-content">
+
+											<div class="taglist">
+												{% if tags|length > 0 %}
+													{% for tag in tags %}
+														<span class="tagsPost" data-id="{{tag.id}}"><span><i class="fa fa-close"></i></span>{{tag.tag}}</span>
+													{% endfor %}
+												{% endif %}
+											</div>
+
+											<div class="form-group label-floating right" style="margin: auto 5%;">
+												<label class="control-label">تگ۱ ، تگ۲ ، ...</label>
+												<input type="text" name="" class="form-control" id="tagsAdder" />
+											</div>
+										</p>
+										<div id="addTagPost"></div>
+									</div>
+								</div>
+
+							<!-- col-4 close -->
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="{{ asset('js/tinymce/tinymce.min.js')}}"></script>
+	<script type="text/javascript">
+	tinyMCE.init({
+        mode : "specific_textareas",
+		editor_selector : "mceEditor",
+	    toolbar: false ,
+	    directionality : 'rtl',
+	    height : 300 ,
+	    browser_spellcheck : true ,
+	    language : 'fa_IR',
+	    theme: "modern",
+		external_filemanager_path: siteurl + "Dashboard/Filemanager/index/TOKEN:{{csrf}}",
+		filemanager_title:"JurchinFileManager" ,
+		external_plugins: { "filemanager" : siteurl + "public/js/tinymce/plugins/responsivefilemanager/plugin.min.js"} , 
+	    plugins: [
+	         "advlist autolink link image lists charmap preview hr",
+	         "searchreplace wordcount visualblocks code fullscreen insertdatetime",
+	         "table directionality emoticons paste textcolor responsivefilemanager "
+	   ],
+	   toolbar1: "fullscreen | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | formatselect fontselect fontsizeselect",
+	   toolbar2: "searchreplace | bullist numlist | blockquote | undo redo | link unlink anchor image media | insertdatetime  | forecolor backcolor",
+	   toolbar3: "responsivefilemanager | table | hr removeformat | subscript superscript | charmap emoticons | ltr rtl | visualblocks restoredraft | responsivefilemanager | code preview",
+	   menubar: false,
+	   toolbar_items_size: 'small',
+	   font_formats: "Arial=arial,helvetica,sans-serif;"+
+		"Comic Sans=comic sans ms,sans-serif;"+
+		"Impact=impact,chicago;"+
+		"Symbol=symbol;"+
+		"Tahoma=tahoma,arial,helvetica,sans-serif;"+
+		"یکان= BYekan,byakan,B Yekan,'B Yekan';"+
+		"نازنین (رسمی)= 'B Nazanin','BNazanin';"+
+		"کودک= 'B Koodak','BKoodak'",
+	   style_formats: [
+	        {title: 'Bold text', inline: 'b'},
+	        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+	        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+	        {title: 'Example 1', inline: 'span', classes: 'example1'},
+	        {title: 'Example 2', inline: 'span', classes: 'example2'},
+	        {title: 'Table styles'},
+	        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+	    ],
+		image_advtab: true
+	 });
+	</script>
+
+{{ include('/partials/pageEnd.html')}}

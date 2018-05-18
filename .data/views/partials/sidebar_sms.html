@@ -1,0 +1,105 @@
+
+		<div class="sidebar" data-color="blue" data-image="{{siteurl}}/public/img/sidebar-3.jpg">
+
+			<div class="logo">
+				<a href="#" class="simple-text">
+					سایت ساز جورچین
+				</a>
+			</div>
+
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+
+
+					<li {% if controller|lower == 'main' and action|lower == 'index' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Main">
+							<i class="material-icons">home</i>
+							<p>خانه</p>
+						</a>
+					</li>
+
+
+					<li {% if controller|lower == 'accounts' and action|lower == 'add' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Accounts/Add">
+							<i class="material-icons">person_add</i>
+							<p>حساب جدید</p>
+						</a>
+					</li>
+
+					<li {% if controller|lower == 'accounts' and action|lower == 'index' %} class="active"  {% endif %}>
+						<a href="{{siteurl}}SMS/Accounts">
+							<i class="material-icons">group</i>
+							<p>حساب ها</p>
+						</a>
+					</li>
+
+					
+
+					<li {% if controller|lower == 'inbox' and action|lower == 'compose' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Inbox/Compose">
+							<i class="material-icons">send</i>
+							<p>ارسال پیامک</p>
+						</a>
+					</li>
+
+					<li {% if controller|lower == 'inbox' and action|lower == 'index' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Inbox">
+							<i class="material-icons">mail</i>
+							<p>جعبه دریافت</p>
+						</a>
+					</li>
+					<li {% if controller|lower == 'sent' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Sent">
+							<i class="material-icons">mail_outline</i>
+							<p>ارسال شده</p>
+						</a>
+					</li>
+
+
+					<li {% if controller|lower == 'settings' %} class="active" {% endif %}>
+						<a href="{{siteurl}}SMS/Settings">
+							<i class="material-icons">settings</i>
+							<p>تنظیمات</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="{{siteurl}}Dashboard/Support">
+							<i class="material-icons">call</i>
+							<p>پشتیبانی</p>
+						</a>
+					</li>
+					<!-- <li class="dropdown supportSidebar {% if controller|lower == 'support' %} active {% endif %}">
+						<a 
+						{% if sideBarTickets|length == 0 %}
+							href="{{siteurl}}Dashboard/Support" >
+						{% else %}
+							href="#" class="dropdown-toggle" data-toggle="dropdown" >
+							<span class="label label-danger pull-left">{{sideBarTickets|length}}</span>
+						{% endif %}
+							<i class="material-icons">bubble_chart</i>
+							<p>پشتیبانی</p>
+						</a>
+						{% if sideBarTickets|length > 0 %}
+						<ul class="dropdown-menu" >
+						{% for ticket in sideBarTickets %}
+							<li><a href="{{siteurl}}SMS/Support/Show/id:{{ticket.id}}">{{ticket.title}}</a></li>
+						{% endfor %}
+							<li class="divider"></li>
+							<li><a href="{{siteurl}}SMS/Support">مشاهده همه تیکت ها</a></li>
+						</ul>
+						{% endif %}
+					</li>
+ -->
+
+
+					<li {% if action|lower == 'services' and controller|lower == 'main' %} class="active" {% endif %} >
+						<a href="{{siteurl}}Dashboard/Main">
+							<i class="material-icons">arrow_forward</i>
+							<p>برگشت به داشبورد</p>
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>

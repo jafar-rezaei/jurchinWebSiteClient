@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <title>API Jurchin System</title>
+    <style type="text/css">
+
+        body{border:6px solid #999;font-family: tahoma;font-size: 11px;}
+
+        form > div.row:first-of-type{border-top: 1px dashed #999;padding-top: 15px;margin-top: 23px;}
+
+        .row{display: block;}
+        .row > label {width:120px;display: inline-block}
+        input{border-radius: 5px;padding: 6px;border:1px solid #ccc;margin:6px}
+        .help-text{font-size: 12px;margin-left:10px;display:inline-block}
+        form{border-sitetom:6px solid #999;padding-sitetom:10px;margin-sitetom:30px;padding: 30px;padding-top: 0}
+        form:last-child{border:none;}
+        form > a{font-family: tahoma;font-size:24px;margin:15px;text-decoration:none;color:#000;line-height: 47px;margin: 10px 0;}
+        form .return {background: #ccc;font-size: 12px;padding: 8px;display: inline-block;border-radius: 4px;float: right;}
+        .whatIs{font-size: 12px;display: block}
+        .whatIs:before{content: "> ";}
+
+        .apiTitle{background: #99ea94;padding: 35px 20px;font-family: tahoma;border-sitetom: 6px solid #7777;margin: 0;font-size: 30px}
+    </style>
+</head>
+<body>
+    <h1 class="apiTitle">Jurchin RestFull Api version 1.2</h1>
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetAccessKey" method="post" style="margin-top: 15px;">
+
+        <a name="GetAccessKey" href="#GetAccessKey">GetAccessKey</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : "accesskey"}<br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">this will create a access code available for 1 minute to send request</span>
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetAccessKey
+        </div>
+        <div class="row">
+            <label class="label">param : </label>
+            <input type="text" name="param"  value="" /> <span class="help-text">clientID [a unique key for user like IP or IMEI] - example : 201.0.12.11 </span>
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/ChecksiteKey" method="post">
+
+        <a name="ChecksiteKey" href="#ChecksiteKey">ChecksiteKey</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : "1"} - save sended param to send in every request<br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">used to check if site key is valid</span>
+
+        این کد فقط در اولین بار در وارد شدن به رسایت تست شود  در بقیه موارد در خود توابع پایین
+        صحت کلید سایت ارسالی تست میشود
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/ChecksiteKey
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey"  value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetCatsList" method="post">
+
+        <a name="GetCatsList" href="#GetCatsList">GetCatsList</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of site cats list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site cats</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetCatsList
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetPostsList" method="post">
+
+        <a name="GetPostsList" href="#GetPostsList">GetPostsList</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of site posts list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site cats</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetPostsList
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetCommentsList" method="post">
+
+        <a name="GetCommentsList" href="#GetCommentsList">GetCommentsList</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of site comments list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site cats</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetCommentsList
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetGatewaysList" method="post">
+
+        <a name="GetGatewaysList" href="#GetGatewaysList">GetGatewaysList</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of gateways list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site pages</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetGatewaysList
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/ChangeTemplate" method="post">
+
+        <a name="ChangeTemplate" href="#ChangeTemplate">ChangeTemplate</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of gateways list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site pages</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/ChangeTemplate
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label">tmpname : </label>
+            <input type="text" name="tmpname" value="Shield" /> <span class="help-text">tmpname</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        
+        
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+    
+    
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetPagesList" method="post">
+
+        <a name="GetPagesList" href="#GetPagesList">GetPagesList</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : array of site pages list} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site pages</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetPagesList
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetPageData" method="post">
+
+        <a name="GetPageData" href="#GetPageData">GetPageData</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : string of a page content} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get list of site pages</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetPageData
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+
+
+        <div class="row">
+            <label class="label">param : </label>
+            <input type="text" name="param" value="" /> <span class="help-text">param is page name</span>
+        </div>
+
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/SetPageData" method="post">
+
+        <a name="SetPageData" href="#SetPageData">SetPageData</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : message of save} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">save a page content</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/SetPageData
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+
+
+        <div class="row">
+            <label class="label">name : </label>
+            <input type="text" name="name" value="" /> <span class="help-text">name of page</span>
+        </div>
+
+        <div class="row">
+            <label class="label">content : </label>
+            <input type="text" name="content" value="" /> <span class="help-text">content of page</span>
+        </div>
+
+
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/GetTemplateName" method="post">
+
+        <a name="GetTemplateName" href="#GetTemplateName">GetTemplateName</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : string of a page content} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">get name of current template</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/GetTemplateName
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+
+
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/SaveImageBase64" method="post">
+
+        <a name="SaveImageBase64" href="#SaveImageBase64">SaveImageBase64</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : saved image name } <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">save a image base64 to a file in uploads folder</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/SaveImageBase64
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+
+
+        <div class="row">
+            <label class="label">image : </label>
+            <input type="text" name="image" value="" /> <span class="help-text">base64 code of image</span>
+        </div>
+
+        <div class="row">
+            <label class="label">type : </label>
+            <input type="text" name="type" value="" /> <span class="help-text"> type of image</span>
+        </div>
+
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+
+
+    <form action="http://www.karahrm.ir/Webservice/Rest/AddPost" method="post">
+
+        <a name="AddPost" href="#AddPost">AddPost</a>
+        <span class="return">
+            success : {"result" : 1 , "data" : "1"} <br/>
+            failure : {"result" : 0 , "message" : "message of reason"}
+        </span>
+        <span class="whatIs">allow you to add post in website</span>
+
+
+
+        <div class="row">
+            <label class="label">request link : </label>
+            http://www.karahrm.ir/Webservice/Rest/AddPost
+        </div>
+        <div class="row">
+            <label class="label">accesskey : </label>
+            <input type="text" name="accesskey" value="sadad_1493130229" /> <span class="help-text">get from <a href="#GetAccessKey">here</a> test : sadad_1493130229</span>
+        </div>
+        <div class="row">
+            <label class="label">sitekey : </label>
+            <input type="text" name="sitekey" value="" /> <span class="help-text">sitekey</span>
+            <!-- test = blog:5RKv6vgDRCrzvJi6IBlegFIkkjnZflml -->
+        </div>
+        <div class="row">
+            <label class="label">param : </label>
+            <input type="text" name="param"  value="" /> <span class="help-text">array of requirments - @requiment : array("title"=>"test","content"=>"content","cat"=>"idOfCat","kindOfPost"=>"1-2-3" , "tags" => "tag1-tag2-tag3", "sendToChannel" => "1-0" , "picture" => "getPicture")</span>
+        </div>
+        <div class="row">
+            <label class="label"></label>
+            <input type="submit" value="ok" />
+        </div>
+    </form>
+</body>
+</html>

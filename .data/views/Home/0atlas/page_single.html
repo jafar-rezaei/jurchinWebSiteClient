@@ -1,0 +1,146 @@
+<section id="home" name="home"></section>
+
+<div id="headerwrap" class="mb25">
+    <div class="container">
+    <div class="row mb25">
+        <style type="text/css">
+    			.customSearchInput input{border:0;box-shadow:none;padding: 3px;
+border: solid 1px #E4E4E4;
+border-radius: 6px;
+background-color: #fff;padding: 10px;font-size: 15px
+}
+    			.customSearchInput button{position: relative;
+right: -47px;
+margin: 5px 0 5px 0;background: none;box-shadow: none;border: 0;color: #666;padding: 0 17px 0 0;border-right: solid 1px #ddd;border-radius: 0;}
+    			.customSearchInput button:hover{background:transparent;color:#777}
+    			.customSearchInput button .icon{font-size:23px;position: relative;bottom: -2px;}
+          .navigator{font-size: 24px;color:#fff}
+          .navigator a{color:#fff}
+    		</style>
+
+
+        <div class="col-md-6">
+          <div class="navigator">
+            <h1 class="inherit"><a href="{{usiteurl}}" title="{{site.name}}">{{site.name}}</a></h1> >
+            <h2 class="inherit"><a href="{{canonical}}" title="{{title|evaluate}}">{{title|evaluate}}</a></h2>
+          </div>
+      	</div>
+    		<div class="col-md-6">
+    			<form class="customSearchInput" action="{{site.url}}/search/" method="get">
+    				<div class="input-group col-md-12">
+    					<input name="Category" value="0" type="hidden">
+    					<input name="SearchIn" value="0" type="hidden">
+    					<input name="keyword" class="form-control input-lg" placeholder="جستجو" type="text">
+    					<span class="input-group-btn">
+    						<button class="btn btn-info btn-lg" type="submit">
+    							<i class="icon ion-ios-search-strong"></i>
+    						</button>
+    					</span>
+    				</div>
+    			</form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="row">
+    <div class="col-md-12 blogShort">
+      <span><i class="icon ion-android-cloud-done ml5 mr5"></i> {{ pageDes|evaluate }}</span>
+      <span class="left pull-left ml5">نتایج : {{ posts00262|length }} عدد</span>
+    </div>
+
+		<div class="col-md-12">
+
+			<div style="border-top:2px dashed #ccc;height:3px"></div>
+
+		</div>
+
+	</div>
+
+
+<div class="row">
+
+{# <helper>name:posts00262-sorting:new-paging:false-cat:0-tagsRepeat:true-catsRepeat:true-doSearch:true</helper> #}{% if posts00262 | length > 0 %}{#   #}
+
+{#  #}{% set loopCount = 5 %}{#   #}
+{#  #}{% set postLength = 300 %}{#   #}
+{#  #}{% for post in posts00262 | slice(0, loopCount) %}{#   #}
+
+	<div class="col-md-12">
+		<h1>{#  #}{{post.title}}{# عنوان نوشته #}</h1>
+
+		<div class="pull-left">{#  #}<img src="{{ postImage(usiteurl , post.image) }}" class="img-thumbnail margin-25" title="{{post.title}}" >{# <img src="assets/themes/content/k02-3.jpg" title="عنوان نوشته" class="img-thumbnail margin-25">  #}</div>
+
+			<em>نوشته شده توسط‌ : {#  #}{{ post.author }}{# نام نویسنده #} - <span class="byekan">{#  #}{{ post.comments }}{# 0 #}</span> نظر</em>
+			<article>
+				<p class="justify">{#  #}{{ content(post.content , postLength) }}{# متن آزمایشی یه تست ساده برای نمایش متن هستش که برای نمایش اطلاعات الکی استفاده میشه. متن آزمایشی اینجا هم مورد استفاده قرار گرفته است :) زمانی که یه فرد ناشناس بخواهد طراحی را مورد بازبینی قرار دهد این متن ها مفید خواهند بود متن آزمایشی یه تست ساده برای نمایش متن هستش که برای نمایش اطلاعات الکی استفاده میشه. #}
+				</p>
+			</article>
+		<a class="btn btn-blog btn-danger pull-right marginBottom10" href="{{ postUrl(usiteurl , post.slug) }}">
+			ادامه مطلب
+		</a>
+	</div>
+
+{#  #}{% endfor %}{#   #}
+
+
+<!-- morePosts -->
+{#  #}{% if (posts00262|length) > loopCount %}{#   #}
+<div class="col-md-12 center">
+	<div style="background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAHCAYAAADNufepAAAAEklEQVQImWPYtGnTfwbCgAxlAMi+CUB7sDE0AAAAAElFTkSuQmCC) repeat-x;height:12px;width: 100%;margin: 15px auto;"></div>
+
+
+	<a class="btn btn-primary btn-sm" href="#">نمایش بیشتر</a>
+</div>
+{#  #}{% endif %}{#   #}
+
+
+
+{#  #}{% else %}{#   #}
+<div class="nopost">
+	<!-- nopost -->
+	<div class="col-md-12 blogShort"><i class="icon ion-android-sad"></i> هیچ نتیجه ای برای جستجوی شما یافت نشد .</div>
+</div>
+
+
+{#  #}{% endif %}{#   #}
+</div>
+
+
+
+
+
+
+
+	<div class="row added">
+
+		<div class="col-md-12">
+
+			<br/>
+		</div>
+
+	</div>
+
+
+</div>

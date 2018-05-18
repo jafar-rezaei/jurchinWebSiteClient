@@ -1,0 +1,110 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="card">
+								<div class="card-header text-center" data-background-color="purple">
+									<div class="gridBg">
+										<h4 class="title">{{pageTitle}}</h4>
+										<p class="category">{{pageDes}}</p>
+									</div>
+								</div>
+								<div class="card-content">
+									<div class="table-responsive table-upgrade">
+										<table class="table">
+											<thead>
+												<th></th>
+												<th class="center">رایگان</th>
+												<th class="center">پیشرفته</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>اتصال دامنه</td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+												<tr>
+													<td>محدودیت درج مطلب</td>
+													<td class="text-center">۵۰ مطلب</td>
+													<td class="text-center">نامحدود</td>
+												</tr>
+												<tr>
+													<td>فضای هاست</td>
+													<td class="text-center">۵۰ مگ</td>
+													<td class="text-center">۵۰۰ مگ</td>
+												</tr>
+
+												<tr>
+													<td>نمایش صحیح در موبایل</td>
+													<td class="text-center"><i class="fa fa-check text-success"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+												<tr>
+													<td>نظرات ، گالری عکس ، عضویت ، ورود ، امنیت  و ...</td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+												<tr>
+													<td>درج ماژول های متغییر</td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+												<tr>
+													<td>پشتیبانی ویژه</td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+
+												<tr>
+													<td>ویرایش حرفه ای کد</td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+
+												<tr>
+													<td>ربات هوشمند تلگرام <blink class="mr5 rad5 label label-danger ssmall" style="padding: 4px 6px">جدید</blink></td>
+													<td class="text-center"><i class="fa fa-times text-danger"></i></td>
+													<td class="text-center"><i class="fa fa-check text-success"></td>
+												</tr>
+												<tr>
+													<td></td>
+													<td class="text-center">رایگان</td>
+													<td class="text-center UpgradePrice">سالیانه ۳۹ هزار تومان</td>
+												</tr>
+												<tr>
+													<td class="text-center"></td>
+													<td class="text-center">
+														<a href="#" class="btn btn-round btn-fill btn-default disabled">نسخه فعلی</a>
+													</td>
+													<td class="text-center">
+														<a data-toggle="modal" data-action="confirm" href="#" class="btn btn-round btn-fill btn-info">ارتقا به نسخه حرفه ای</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			{{ include('/partials/footer.html')}}
+			
+		</div>
+	</div>
+	
+{{ include('/partials/pageEnd.html')}}

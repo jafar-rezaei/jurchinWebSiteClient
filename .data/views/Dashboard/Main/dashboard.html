@@ -1,0 +1,346 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="card card-stats">
+								<div class="card-header" data-background-color="orange">
+									<i class="material-icons">storage</i>
+								</div>
+								<div class="card-content">
+									<p class="category">فضای استفاده شده</p>
+									<h3 class="title">{{data.UsedSpace}}%</h3><span class="smalltext inline">درصد</span>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons text-danger">warning</i> <a href="{{siteurl}}Dashboard/Site/Upgrade">دریافت فضای بیشتر</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="card card-stats">
+								<div class="card-header" data-background-color="green">
+									<i class="material-icons">edit</i>
+								</div>
+								<div class="card-content">
+									<p class="category">نوشته ها</p>
+									<h3 class="title">{{data.posts|length}} </h3> <span class="smalltext">نوشته</span>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">date_range</i>
+										<a  href="{{siteurl}}Dashboard/Post">
+										{% if data.posts|length > 0 %}
+											{{data.posts.0.title}}..
+										{% else %}
+											بدون نوشته ...
+										{% endif %}
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="card card-stats">
+								<div class="card-header" data-background-color="red">
+									<i class="material-icons">comment</i>
+								</div>
+								<div class="card-content">
+									<p class="category">نظرات</p>
+									<h3 class="title">{{data.comments|length}}</h3><span class="smalltext">نظر</span>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">comment</i>
+										<a href="{{siteurl}}Dashboard/Comments">
+										{% if data.comments|length > 0 %}
+											{{data.comments.0.comment}}..
+										{% else %}
+											بدون نظر ...
+										{% endif %}
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="card card-stats">
+								<div class="card-header" data-background-color="blue">
+									<i class="fa fa-eye"></i>
+								</div>
+								<div class="card-content">
+									<p class="category">بازدید</p>
+									<h3 class="title">+{{data.visitsCount}}</h3><span class="smalltext">بار</span>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">update</i> همین چند لحظه پیش
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="card" style="margin-top: 0;padding: 12px">
+								<i class="material-icons middle">timer</i> امروز {{ "now"|date('Y/m/d', timezone="Asia/Tehran") }} - <span id="persianDate"></span> - ساعت <span id="clock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="card">
+								<div class="card-header card-chart" data-background-color="green">
+									<div class="ct-chart" id="vistsTableList" data-datas="{% for v in data.visits %}{{v}},{% endfor %}" data-labels="{% for k,c in data.visits %}{{k}},{% endfor %}"></div>
+								</div>
+								<div class="card-content">
+									<h4 class="title">بازدیدها</h4>
+									<!-- <p class="category">
+										<span class="text-success">
+											<i class="fa fa-long-arrow-up"></i> امروز 55%
+										</span>
+										درصد افزایش بازدید دارین .
+									</p> -->
+									<span class="text-success">بازدید های انجام شده سایت</span>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										{% if data.lastVisit|length > 0 %}
+										<i class="material-icons">access_time</i> آخرین بازدید <span data-timeAgo="{{data.lastVisit.date}}"></span>
+										{% else %}
+										هیچ بازدیدی انجام نشده است ...
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="card">
+								<div class="card-header card-chart" data-background-color="green">
+									<div class="ct-chart" id="commentsTableList" data-datas="{% for c in data.cmList %}{{c}},{% endfor %}" data-labels="{% for k,c in data.cmList %}{{k}},{% endfor %}"></div>
+								</div>
+								<div class="card-content">
+									<h4 class="title">روند نظرات</h4>
+									<p class="category">نظرات ثبت شده در مطالب</p>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										{% if data.comments|length > 0 %}
+										<i class="material-icons">access_time</i> آخرین نظر <span data-timeAgo="{{data.comments.0.date}}"></span>
+										{% else %}
+										هیچ نظری وجود ندارد ...
+										{% endif %}
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="card card-nav-tabs">
+								<div class="card-header" data-background-color="blue">
+									<div class="gridBg">
+										<div class="nav-tabs-navigation">
+											<div class="nav-tabs-wrapper">
+												<span class="nav-tabs-title">دسترسی سریع:</span>
+												<ul class="nav nav-tabs" data-tabs="tabs">
+
+													<li class="active">
+														<a href="#pages" data-toggle="tab">
+															<i class="material-icons">library_books</i>
+															صفحات
+														<div class="ripple-container"></div></a>
+													</li>
+													<li >
+														<a href="#posts" data-toggle="tab">
+															<i class="material-icons">edit</i>
+															نوشته ها
+														<div class="ripple-container"></div></a>
+													</li>
+													<li >
+														<a href="#comments" data-toggle="tab">
+															<i class="material-icons">comment</i>
+															نظرات
+														<div class="ripple-container"></div></a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-content">
+									<div class="tab-content">
+										<div class="tab-pane active" id="pages">
+											<table class="table">
+												<tbody>
+											{% set pageLoopIndex = 0 %}
+											{% if data.pages|length > 0 %}
+												{% for page in data.pages if pageLoopIndex < 4 %}
+												{% set pageLoopIndex = loop.index %}
+													<tr>
+														<td style="width: 80%">
+															<a href="{{siteurl}}Dashboard/Pages/List/edit:{{page}}"><i class="fa fa-sticky-note-o ml10"></i>{{page}}</a>
+														</td>
+														<td class="td-actions text-right">
+															<a href="{{siteurl}}editor/page:{{page}}" rel="tooltip" title="ویرایش" class="btn btn-primary btn-simple btn-xs" target="_blank">
+																<i class="material-icons">brush</i>
+															</a>
+															<a href="{{siteurl}}Dashboard/Pages/List/delete:{{page}}" rel="tooltip" title="حذف" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">delete</i>
+															</a>
+														</td>
+													</tr>
+												{% endfor %}
+
+												{% if data.pages|length > 4 %}
+													<tr>
+														<td>
+															<a class="btn btn-info" href="{{siteurl}}Dashboard/Pages">مشاهده همه</a>
+														</td>
+														<td></td>
+													</tr>
+												{% endif %}
+
+											{% else %}
+													<tr>
+														<td style="width: 80%">بدون صفحه</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<a class="btn btn-info" href="{{siteurl}}Dashboard/Pages/New">صفحه جدید</a>
+														</td>
+														<td></td>
+													</tr>
+											{% endif %}
+
+												</tbody>
+											</table>
+										</div>
+										<div class="tab-pane" id="comments">
+											<table class="table">
+												<tbody>
+											{% set commentLoopIndex = 0 %}
+											{% if data.comments|length > 0 %}
+												{% for comment in data.comments if commentLoopIndex < 4 %}
+												{% set commentLoopIndex = loop.index %}
+
+													<tr>
+														<td style="width: 80%">
+															<a href="{{siteurl}}Dashboard/Comments/List/show:{{comment.cid}}"><i class="fa fa-comments ml5"></i> {{comment.comment}}</a>
+														</td>
+														<td class="td-actions text-right">
+
+															<a href="{{siteurl}}Dashboard/Comments/List/show:{{comment.cid}}" rel="tooltip" title="نمایش" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">search</i>
+															</a>
+															<a href="{{siteurl}}Dashboard/Comments/List/edit:{{comment.cid}}" rel="tooltip" title="ویرایش" class="btn btn-primary btn-simple btn-xs" >
+																<i class="material-icons">edit</i>
+															</a>
+															<a href="{{siteurl}}Dashboard/Comments/List/delete:{{comment.cid}}" rel="tooltip" title="حذف" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">delete</i>
+															</a>
+														</td>
+													</tr>
+												{% endfor %}
+
+												{% if data.comments|length > 4 %}
+													<tr>
+														<td>
+															<a class="btn btn-info" href="{{siteurl}}Dashboard/Comments">مشاهده همه</a>
+														</td>
+														<td></td>
+													</tr>
+												{% endif %}
+
+											{% else %}
+													<tr>
+														<td>بدون نظر</td>
+														<td></td>
+													</tr>
+											{% endif %}
+												</tbody>
+
+											</table>
+										</div>
+										<div class="tab-pane" id="posts">
+											<table class="table">
+												<tbody>
+											{% set postLoopIndex = 0 %}
+											{% if data.posts|length > 0 %}
+												{% for post in data.posts  if postLoopIndex < 4 %}
+												{% set postLoopIndex = loop.index %}
+													<tr>
+														<td style="width: 80%">
+															<a href="{{siteurl}}Dashboard/Post/Edit/id:{{post.pid}}"><i class="fa fa-pencil ml10"></i>{{post.title}}</a>
+														</td>
+														<td class="td-actions text-right">
+															<a href="{{siteurl}}Dashboard/Post/Edit/id:{{post.pid}}" rel="tooltip" title="ویرایش" class="btn btn-primary btn-simple btn-xs" >
+																<i class="material-icons">edit</i>
+															</a>
+															<a href="{{siteurl}}Dashboard/Post/List/delete:{{post.pid}}" rel="tooltip" title="حذف" class="btn btn-danger btn-simple btn-xs">
+																<i class="material-icons">delete</i>
+															</a>
+														</td>
+													</tr>
+												{% endfor %}
+
+
+												{% if data.posts|length > 4 %}
+													<tr>
+														<td>
+															<a class="btn btn-info" href="{{siteurl}}Dashboard/Post">مشاهده همه</a>
+														</td>
+														<td></td>
+													</tr>
+												{% endif %}
+
+											{% else %}
+													<tr>
+														<td>بدون نوشته</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<a class="btn btn-info" href="{{siteurl}}Dashboard/Post/Add">نوشته جدید</a>
+														</td>
+														<td></td>
+													</tr>
+											{% endif %}
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+{{ include('/partials/pageEnd.html')}}

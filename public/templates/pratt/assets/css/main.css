@@ -1,0 +1,221 @@
+
+body {
+    background-color: #f2f2f2;
+    font-family:BYekan ,'BYekan','b yekan',tahoma;
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    padding-top: 50px;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    text-align: right;
+    direction: rtl;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "BYekan",'B Yekan' , BYekan , B yekan , tahoma ;
+    font-weight: 300;
+    color: #333;
+}
+
+
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Links */
+a {
+    color: #3bc492;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: #c0392b;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+/* ==========================================================================
+   Wrap Sections
+   ========================================================================== */
+
+#headerwrap {
+	background-color: #34495e;
+	padding-top: 60px;
+}
+
+#headerwrap h1 {
+	margin-top: 30px;
+	color: white;
+	font-size: 70px;
+	
+}
+
+#headerwrap h3 {
+	color: white;
+    font-size: 26px;
+    margin-top: 35px;
+}
+
+#headerwrap h5 {
+	color: #a0e649;
+	font-weight: 700;
+	text-align: right;
+    font-size: 17px
+}
+
+#headerwrap p {
+    direction: rtl;
+	text-align: justify;
+	color: white
+}
+
+.topImage{-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;}
+
+.white{color: #fff}
+.justify{text-align: justify;}
+
+label{font-weight: normal !important}
+
+/* intro Wrap */
+
+#intro,#features,#showcase{
+	padding: 130px 0;
+}
+
+#intro {
+	border-top: #bdc3c7 solid 5px;
+}
+
+#features {
+}
+
+#features .ac a{
+	font-size: 20px;
+}
+
+/* Showcase Wrap */
+
+#showcase {
+	display: block;
+	background-color: #34495e;
+}
+
+#showcase h1 {
+	color: white;
+}
+
+#footerwrap {
+	background-color: #2f2f2f;
+	color: white;
+	padding-top: 40px;
+	padding-bottom: 60px;
+	text-align: right;
+}
+
+#footerwrap h3 {
+	font-size: 28px;
+	color: white;
+}
+
+#footerwrap p {
+	color: white;
+	font-size: 18px;
+}
+
+/* Copyright Wrap */
+
+#c {
+	background: #222222;
+	padding-top: 15px;
+	text-align: right;
+}
+
+#c p {
+	color: white
+}
+
+
+
+
+
+
+
+
+
+
+
+/*  This part is added by sara */
+
+
+
+.navbar-header {
+    float:right;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+    color: #fff !important;
+    background-color: #387099 !important;
+}
+
+.navbar-nav > li {
+    float: right;
+    margin-top: 10px;
+}
+
+
+.navbar > .container .navbar-brand {
+    margin-right:-15px;
+    margin-left:0;
+}
+
+[class*=col-] {
+    float:right;
+}
+
+[class*=col-lg-offset-] {
+    float: left !important
+}
+
+
+

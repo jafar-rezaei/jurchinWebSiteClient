@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+	<meta charset="utf-8" />
+
+	<title>{{pageTitle}} - {{sitename}}</title>
+
+	<!-- Canonical SEO -->
+	<link rel="canonical" href="{{canonical | evaluate}}" />
+
+	<!--  Social tags      -->
+	<meta name="keywords" content="{{pageKeyword}}" >
+	<meta name="description" content="{{pageDes}}" >
+
+	<!-- Schema.org markup for Google+ -->
+	<meta itemprop="name" content="{{pageTitle}}">
+	<meta itemprop="description" content="{{pageDes}}">
+	<meta itemprop="image" content="{% if pageImage %}{{pageImage}}{% else %}{{siteurl}}public/img/favicon/apple-icon-180x180.png{% endif %}">
+
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@jurchin_ir">
+	<meta name="twitter:title" content="{{pageTitle}}">
+	<meta name="twitter:description" content="{{pageDes}}">
+	<meta name="twitter:image" content="{% if pageImage %}{{pageImage}}{% else %}{{siteurl}}public/img/favicon/apple-icon-180x180.png{% endif %}">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="{{pageTitle}}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{canonical | evaluate}}" />
+	<meta property="og:image" content="{% if pageImage %}{{pageImage}}{% else %}{{siteurl}}public/img/favicon/apple-icon-180x180.png{% endif %}"/>
+	<meta property="og:description" content="{{pageDes}}" />
+	<meta property="og:site_name" content="Jurchin" />
+
+
+	<!-- favIcon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="{{siteurl}}public/img/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="{{siteurl}}public/img/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="{{siteurl}}public/img/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="{{siteurl}}public/img/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="{{siteurl}}public/img/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="{{siteurl}}public/img/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="{{siteurl}}public/img/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="{{siteurl}}public/img/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{siteurl}}public/img/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="{{siteurl}}public/img/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{siteurl}}public/img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{siteurl}}public/img/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{siteurl}}public/img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="{{siteurl}}public/img/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="{{siteurl}}public/img/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+
+	<!-- Stylesheets -->
+	{% block stylesheets %}
+
+	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/material-dashboard.css') }}" rel="stylesheet" />
+
+	<!-- fonts and icons -->
+	<link href="{{ asset('css/UsedFonts/fonts.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/icons/css/jurchinIcons.css') }}" rel="stylesheet" />
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+		{{extraCss | evaluate }}
+	{% endblock %}
+
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		var siteurl = '{{siteurl}}';
+		var usersite = '{{usersite}}';
+		var lang = '{{lang}}';
+		var parameter = { {% for k,v in parameter %}"{{k}}":"{{v}}",{% endfor %} };
+		var userKey = '{{userkey}}';
+	/* ]]> */
+	</script>
+
+
+</head>

@@ -1,0 +1,135 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<form role="form" class="jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="Dashboard/Support/Show/id:{{parameter.id}}">
+						<div class="row">
+							<input type="hidden" name="action" value="answer" />
+							<input type="hidden" name="tid" value="{{parameter.id}}" />
+							<div class="col-md-12 col-xs-12 col-sm-12">
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<a href="{{siteurl}}Dashboard/Support/List/close:{{parameter.id}}" class="btn btn-info btn-round pull-left btnNewX irsans"><i class="material-icons">close</i> بستن تیکت</a>
+
+											<h4 class="title">{{pageTitle}}</h4>
+											<p class="category">{{ticket.title}}</p>
+										</div>
+									</div>
+									<div class="card-content">
+
+
+										<div class="row mt15">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="card">
+
+
+													<div class="byekan card-header" data-background-color="green">
+														<span class="pull-left">{{ticket.PersianDate}}</span>
+														{{user.firstname}} {{user.lastname}}
+
+													</div>
+
+													<div class="card-content">
+
+														{{ticket.content}}
+
+														{% if ticket.attach %}
+														<hr/>
+														<a href="{{siteurl}}public/uploads/{{ticket.attach}}" target="_blank"><i class="fa fa-tag"></i> فایل پیوست</a>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+										{% if ticket.answers|length > 0 %}
+										{% for answer in ticket.answers %}
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="card">
+													<div class="byekan card-header" data-background-color="green">
+														<span class="pull-left">{{answer.date}}</span>
+														{% if answer.isuser == 0 %}
+														<i class="material-icons middle ml5">face</i>پاسخ کارشناس :‌
+														{% else %}
+														{{user.firstname}} {{user.lastname}}
+														{% endif %}
+
+													</div>
+
+													<div class="card-content">
+
+														{{answer.content}}
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+										{% endfor %}
+										{% endif %}
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+												<div class="card">
+													<div class="byekan card-header" data-background-color="blue">
+														پاسخ کاربر
+
+													</div>
+
+													<div class="card-content">
+
+														<div class="form-group label-floating">
+															<label class="control-label"> پاسخ خود را اینجا وارد کنید</label>
+															<textarea class="form-control" rows="5" name="ticketAnswer" style="margin-bottom: -23px;"></textarea>
+														</div>
+
+
+														<!-- recapthca -->
+														<div class="g-recaptcha byekan" data-sitekey="6LeBLBsTAAAAAKIl7vHcK5_DpDAOg6Gw3N2HpZel"></div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<a href="{{siteurl}}Dashboard/Support" class="btn pull-left">برگشت <i class="material-icons">chevron_left</i></a>
+										<button type="submit" class="btn btn-info pull-right">ارسال پاسخ</button>
+										<div class="clearfix"></div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+{{ include('/partials/pageEnd.html')}}

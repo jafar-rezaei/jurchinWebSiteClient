@@ -1,0 +1,114 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="card">
+								<div class="card-header" data-background-color="purple">
+									<div class="gridBg">
+
+										<div class="btn btn-info btn-round pull-left btnNewX irsans" data-toggle="modal" data-action="new">دسته جدید</div>
+
+										<h4 class="title">{{pageTitle}}</h4>
+										<p class="category">{{pageDes}}</p>
+									</div>
+								</div>
+								<div class="card-content table-responsive">
+									
+									
+									<div class="left" style="position: relative;top: 30px;">
+										<div class="btn btn-success btn-round showAnother" data-show="tableSettingMenu" rel="tooltip" title="تنظیمات" >
+										   <i class="material-icons">settings</i>
+										</div>
+									</div>
+									<label class="tableSearchInput">جستجو: <input id="myInputTextField" type="text"></label>
+
+									<div id="tableSettingMenu" style="display: none">
+									</div>
+
+
+
+									<table data-jrSetting="letter" data-persianLetter="0" data-persianNum="1,2" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th class="jrLetter" style="width: 50%">
+													عنوان دسته
+												</th>
+												<th class="">
+													نوشته ها
+												</th>
+												<th>
+													گزینه ها
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% if cats|length > 0 %}
+										{% for cat in cats %}
+
+											<tr data-id="{{cat.cid}}" data-subcats="{% for subcat in cat.subcats %}{{subcat.cid}},{{subcat.name}},{{subcat.posts}}-{% endfor %}">
+												<td class="catTitle">
+													<a href="#modal" data-toggle="modal" data-action="subcats" >{{cat.name}}</a>
+												</td>
+												<td>{{cat.posts}}</td>
+												<td>
+													
+													<a href="{{siteurl}}Dashboard/Post/List/cat:{{cat.cid}}" target="_blank" rel="tooltip" title="مشاهده پست ها" class="btn btn-round btn-success btn-fab btn-fab-mini">
+														<i class="material-icons">layers</i>
+													</a>
+
+													<a href="#modal" rel="tooltip" title="ویرایش" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-toggle="modal" data-action="edit" >
+														<i class="material-icons" >edit</i>
+													</a>
+
+
+													<a href="#modal" rel="tooltip" title="زیر دسته ها" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-toggle="modal" data-action="subcats">
+														<i class="material-icons" >low_priority</i>
+													</a>
+													
+
+													<span rel="tooltip" title="حذف" class="btn btn-round btn-danger btn-fab btn-fab-mini" data-toggle="modal" data-action="delete">
+														<i class="material-icons" >delete</i>
+													</span>
+												</td>
+											</tr>
+
+
+										{% endfor %}
+									{% else %}
+											<tr>
+												<td>دسته ای وجود ندارد</td>
+												<td></td>
+												<td></td>
+											</tr>
+									{% endif %}
+											
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			{{ include('/partials/footer.html')}}
+			
+		</div>
+	</div>
+	
+{{ include('/partials/pageEnd.html')}}

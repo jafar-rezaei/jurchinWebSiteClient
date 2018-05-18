@@ -1,0 +1,132 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="card">
+								<div class="card-header" data-background-color="purple">
+									<div class="gridBg">
+
+										<a href="{{siteurl}}Dashboard/Post/Add" class="btn btn-info btn-round pull-left btnNewX irsans">نوشته جدید</a>
+
+										<h4 class="title">{{pageTitle}}</h4>
+										<p class="category">{{pageDes}}</p>
+									</div>
+								</div>
+								<div class="card-content table-responsive">
+									
+									
+									<div class="left" style="position: relative;top: 30px;">
+										<div class="btn btn-success btn-round showAnother" data-show="tableSettingMenu" rel="tooltip" title="تنظیمات" >
+										   <i class="material-icons">settings</i>
+										</div>
+									</div>
+									<label class="tableSearchInput">جستجو: <input id="myInputTextField" type="text"></label>
+
+									<div id="tableSettingMenu" style="display: none">
+									</div>
+
+									<table data-jrSetting="count,letter,date" data-persianLetter="0,1" data-persianNum="2,3" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th class="jrLetter">
+													عنوان نوشته
+												</th>
+												<th class="">
+													دسته بندی
+												</th>
+												<th class="jrCount">
+													بازدید
+												</th>
+												<th>
+													نظرات
+												</th>
+												<th class="jrDate">
+													تاریخ درج
+												</th>
+
+												<th>
+													گزینه ها
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+
+									{% if posts|length > 0 %}
+										{% for post in posts %}
+
+											<tr data-id="{{post.pid}}">
+												<td class="title" style="min-width: 25%">
+													<a href="{{usersite}}/Post/{{post.title | replace({' ' : '-'}) }}" target="_blank">{{post.title}}</a>
+												</td>
+												<td>
+													{{post.cat}}
+												</td>
+												<td>
+													{{post.visits}}
+												</td>
+												<td>
+													{{post.comments}}
+												</td>
+												<td data-order="{{post.adddate}}">
+													{{post.adddateTime}}
+												</td>
+												<td>
+													
+													<a href="{{usersite}}/Post/{{post.title | replace({' ' : '-'}) }}" target="_blank" rel="tooltip" title="مشاهده" class="btn btn-round btn-success btn-fab btn-fab-mini">
+														<i class="material-icons">search</i>
+													</a>
+
+													<a href="{{siteurl}}Dashboard/Post/edit/id:{{post.pid}}" rel="tooltip" title="ویرایش" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-action="edit">
+														<i class="material-icons" >edit</i>
+													</a>
+
+													<span rel="tooltip" title="حذف" class="btn btn-round btn-danger btn-fab btn-fab-mini" data-toggle="modal" data-action="delete">
+														<i class="material-icons" >delete</i>
+													</span>
+												</td>
+											</tr>
+
+										{% endfor %}
+									{% else %}
+
+											<tr>
+												<td>نوشته ای وجود ندارد</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+
+									{% endif %}
+											
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			{{ include('/partials/footer.html')}}
+			
+		</div>
+	</div>
+	
+{{ include('/partials/pageEnd.html')}}

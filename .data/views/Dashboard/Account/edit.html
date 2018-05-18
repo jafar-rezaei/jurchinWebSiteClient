@@ -1,0 +1,158 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		<div class="main-panel" style="width: 100%">
+
+			{{ include('/partials/navbar.html')}}
+
+
+					<div class="content">
+
+
+						<div class="row">
+							<div class="col-md-8 col-sm-12 col-xs-12">
+								<form role="form" class="container-fluid jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="Dashboard/Account/Edit">
+
+									<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+									<div class="card">
+										<div class="card-header" data-background-color="purple">
+											<div class="gridBg">
+												<h4 class="title">{{pageTitle}}</h4>
+												<p class="category">{{pageDes}}</p>
+											</div>
+										</div>
+										<div class="card-content">
+
+
+											<div class="row">
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">نام</label>
+														<input type="text" class="form-control" name="first_name" value="{{user.firstname}}" />
+													</div>
+												</div>
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">نام خانوادگی</label>
+														<input type="text" class="form-control" name="last_name" value="{{user.lastname}}" />
+													</div>
+												</div>
+											</div>
+
+
+
+											<div class="row">
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">کشور</label>
+														<select name="country" id="user_country" >
+														{% for c in countrirs %}
+															<option value="{{c.id}}" {% if c.id == user.ucountry %}selected{% endif %}>{{c.local_name}}</option>
+														{% endfor %}
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">استان</label>
+
+														<select name="city" id="user_city">
+														{% for c in cities %}
+															<option value="{{c.id}}" {% if c.id == user.ucity %}selected{% endif %}>{{c.local_name}}</option>
+														{% endfor %}
+														</select>
+
+													</div>
+												</div>
+
+											</div>
+
+
+											<div class="row">
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">شماره موبایل</label>
+														<input type="text" class="form-control" name="mobileNumber" value="{{user.user_name}}" />
+													</div>
+												</div>
+												<div class="col-md-6 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">تلفن ثابت</label>
+														<input type="text" class="form-control" name="phoneNumber" value="{{user.phone}}" />
+													</div>
+												</div>
+
+											</div>
+
+
+											<div class="row">
+												<div class="col-md-12 col-xs-12 col-sm-12">
+													<div class="form-group label-floating">
+														<label class="control-label">آدرس محل سکونت</label>
+														<input type="text" class="form-control" value="{{user.address}}" name="address" />
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12 col-xs-12 col-sm-12">
+													<div class="form-group">
+														<label>درباره من</label>
+														<div class="form-group label-floating">
+															<label class="control-label"> چند جمله درباره شما برای نمایش در زیر پست ها</label>
+															<textarea class="form-control" name="aboutMe" rows="5">{{user.aboutme}}</textarea>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<button type="submit" class="btn btn-primary pull-right">تغییر اطلاعات</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+
+								</form>
+							</div>
+
+							<div class="col-md-4 col-sm-12 col-xs-12">
+								<div class="card card-profile">
+									<div class="card-avatar">
+										<label for="avatar" id="previewAX" >
+											<img class="img" src="{% if user.avatar == "" %}http://www.jurchin.com/public/img/savatar.png{% else %}http://www.jurchin.com/public/uploads/avatars/{{user.avatar}}{% endif %}" />
+										</label>
+									</div>
+
+									<div class="content">
+
+										<form enctype="multipart/form-data" action="{{siteurl}}Dashboard/Account/ChangeAvatar" method="post" >
+
+											<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+											<input type="file" name="avatar" class="file_Upload" id="avatar" style="display: none;" />
+
+											<h6 class="category text-gray">تصویر کاربری</h6>
+											<h4 class="card-title">{{user.firstname}} {{user.lastname}}</h4>
+
+											<div class="center">
+												<label for="avatar" id="previewAX" class="btn btn-success"><i class="fa fa-folder-open"></i></label>
+												<button type="submit" class="btn btn-primary" ><i class="fa fa-check"></i> بارگذاری</button>
+											</div>
+										</form>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+					</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+{{ include('/partials/pageEnd.html')}}

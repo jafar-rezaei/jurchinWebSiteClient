@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>{{pageTitle | evaluate}} - {{site.name | evaluate}}</title>
+
+	<!-- Canonical SEO -->
+	<link rel="canonical" href="{{canonical | evaluate}}" />
+
+	<!--	Social tags			-->
+	<meta name="keywords" content="{{pageKeyword | evaluate}}" >
+	<meta name="description" content="{{pageDes | evaluate}}" >
+
+	<!-- Schema.org markup for Google+ -->
+	<meta itemprop="name" content="{{pageTitle | evaluate}}">
+	<meta itemprop="description" content="{{pageDes | evaluate}}">
+	<meta itemprop="image" content="{% if pageImage %}{{pageImage | evaluate}}{% else %}{{siteurl}}public/img/JustLogo.png{% endif %}">
+
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@jurchin_ir">
+	<meta name="twitter:title" content="{{pageTitle | evaluate}}">
+	<meta name="twitter:description" content="{{pageDes | evaluate}}">
+	<meta name="twitter:image" content="{% if pageImage %}{{pageImage | evaluate}}{% else %}{{siteurl}}public/img/JustLogo.png{% endif %}">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="{{pageTitle | evaluate}}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{canonical | evaluate}}" />
+	<meta property="og:image" content="{% if pageImage %}{{pageImage | evaluate}}{% else %}{{siteurl}}public/img/JustLogo.png{% endif %}"/>
+	<meta property="og:description" content="{{pageDes | evaluate}}" />
+	<meta property="og:site_name" content="{{site.sub}}" />
+
+
+	<!-- favIcon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="jorchinContent/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="jorchinContent/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="jorchinContent/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="jorchinContent/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="jorchinContent/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="jorchinContent/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="jorchinContent/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="jorchinContent/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="jorchinContent/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="jorchinContent/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="jorchinContent/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="jorchinContent/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="jorchinContent/favicon/favicon-16x16.png">
+	<link rel="manifest" href="jorchinContent/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="jorchinContent/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link href="{{ editor('assets/themes/content/template.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ editor('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+
+
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<style>
+		body { background-color: #efefef;margin-bottom: 40px}
+		.is-container {  margin: 60px auto ; max-width: 1050px; width:100%; padding:55px 35px 0px 35px;box-sizing:border-box; background-color: #f7f7f7;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);}
+		@media all and (max-width: 1080px) {
+			.is-container { margin:0; }
+		}
+	</style>
+	
+</head>
+<body>
+	<div id="content-page" style="direction: rtl;">
+
+		<div id="contentEditable" class="is-container container">
+			{{pageContent | evaluate}}
+		</div>
+
+
+		<script src="{{ editor('assets/js/jquery.min.js') }}" type="text/javascript"></script>
+		<script src="{{ editor('assets/js/tether.min.js') }}" type="text/javascript"></script>
+		<script src="{{ editor('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+		<div class="sidebar" data-color="purple" data-image="{{siteurl}}/public/img/sidebar-3.jpg">
+
+			<div class="logo">
+				<a href="#" class="simple-text">
+					{{sitename}}
+				</a>
+			</div>
+
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+					<li {% if controller|lower == 'main' and action|lower == 'index' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Main">
+							<i class="material-icons">dashboard</i>
+							<p>داشبورد</p>
+						</a>
+					</li>
+					<li {% if controller|lower == 'post' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Post">
+							<i class="material-icons">edit</i>
+							<p>نوشته ها</p>
+						</a>
+					</li>
+					<li {% if controller|lower == 'categories' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Categories">
+							<i class="material-icons">list</i>
+							<p>دسته بندی ها</p>
+						</a>
+					</li>
+					<li {% if controller|lower == 'comments' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Comments">
+							<i class="material-icons">comment</i>
+							<p>نظرات</p>
+						</a>
+					</li>
+					<li {% if controller|lower == 'pages' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Pages">
+							<i class="material-icons">library_books</i>
+							<p>صفحات سایت</p>
+						</a>
+					</li>
+
+					<li {% if (action|lower == 'setting') or (action|lower == 'gateway') %} class="active" {% endif %}>
+						<a href="{{siteurl}}Dashboard/Site/Setting">
+							<i class="material-icons">settings</i>
+							<p>تنظیمات سایت</p>
+						</a>
+					</li>
+
+					<li class="dropdown supportSidebar {% if controller|lower == 'support' %} active {% endif %}">
+						<a
+						{% if sideBarTickets|length == 0 %}
+							href="{{siteurl}}Dashboard/Support" >
+						{% else %}
+							href="#" class="dropdown-toggle" data-toggle="dropdown" >
+							<span class="label label-danger pull-left">{{sideBarTickets|length}}</span>
+						{% endif %}
+							<i class="material-icons">call</i>
+							<p>پشتیبانی</p>
+						</a>
+						{% if sideBarTickets|length > 0 %}
+						<ul class="dropdown-menu" >
+						{% for ticket in sideBarTickets %}
+							<li><a href="{{siteurl}}Dashboard/Support/Show/id:{{ticket.id}}">{{ticket.title}}</a></li>
+						{% endfor %}
+							<li class="divider"></li>
+							<li><a href="{{siteurl}}Dashboard/Support">مشاهده همه تیکت ها</a></li>
+						</ul>
+						{% endif %}
+					</li>
+
+
+
+					<li {% if action|lower == 'services' and controller|lower == 'main' %} class="active" {% endif %} >
+						<a href="{{siteurl}}Dashboard/Main/Services">
+							<i class="material-icons">room_service</i>
+							<p>سرویس ها</p>
+						</a>
+					</li>
+
+					<li {% if action|lower == 'upgrade' %} class="active" {% endif %}>
+						<a {% if action|lower != 'upgrade' %}style="color: #da7d23"{% endif %} href="{{siteurl}}Dashboard/Site/Upgrade">
+							<i class="material-icons" {% if action|lower != 'upgrade' %}style="color: #e98626"{% endif %}>shopping_basket</i>
+							<p>ارتقا سایت</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>

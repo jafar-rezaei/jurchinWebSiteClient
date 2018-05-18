@@ -1,0 +1,79 @@
+
+		<div class="sidebar" data-color="green" data-image="{{siteurl}}/public/img/sidebar-3.jpg">
+
+			<div class="logo">
+				<a href="#" class="simple-text">
+					سایت ساز جورچین
+				</a>
+			</div>
+
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+
+
+					<li {% if controller|lower == 'main' and action|lower == 'index' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Host/Main">
+							<i class="material-icons">home</i>
+							<p>خانه</p>
+						</a>
+					</li>
+
+
+
+
+					<li {% if controller|lower == 'filemanager' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Host/FileManager">
+							<i class="material-icons">folder_open</i>
+							<p>مدیریت فایل</p>
+						</a>
+					</li>
+
+					<li {% if controller|lower == 'database' and action|lower == 'add' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Host/DataBase/Add">
+							<i class="material-icons">library_add</i>
+							<p>ساخت پایگاه داده</p>
+						</a>
+					</li>
+
+					<li {% if controller|lower == 'database' and action|lower == 'index' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Host/DataBase">
+							<i class="material-icons">storage</i>
+							<p>پایگاه داده</p>
+						</a>
+					</li>
+
+					<li {% if controller|lower == 'ftp' %} class="active"  {% endif %}>
+						<a href="{{siteurl}}Host/FTP">
+							<i class="material-icons">transfer_within_a_station</i>
+							<p>مدیریت FTP</p>
+						</a>
+					</li>
+
+
+					<li {% if controller|lower == 'tools' %} class="active" {% endif %}>
+						<a href="{{siteurl}}Host/Tools">
+							<i class="material-icons">opacity</i>
+							<p>ابزارها</p>
+							<!-- backups - ipdeny - subdomain -->
+						</a>
+					</li>
+
+
+					<li>
+						<a href="{{siteurl}}Dashboard/Support">
+							<i class="material-icons">call</i>
+							<p>پشتیبانی</p>
+						</a>
+					</li>
+
+
+					<li>
+						<a href="{{siteurl}}Dashboard/Main">
+							<i class="material-icons">arrow_forward</i>
+							<p>برگشت به داشبورد</p>
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>

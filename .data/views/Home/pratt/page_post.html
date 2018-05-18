@@ -1,0 +1,221 @@
+<section id="home" name="home"></section>
+
+<div id="headerwrap" class="mb25">
+    <div class="container">
+    <div class="row mb25">
+        <style type="text/css">
+    			.customSearchInput input{border:0;box-shadow:none;padding: 3px;
+border: solid 1px #E4E4E4;
+border-radius: 6px;
+background-color: #fff;padding: 10px;font-size: 15px
+}
+    			.customSearchInput button{position: relative;
+right: -47px;
+margin: 5px 0 5px 0;background: none;box-shadow: none;border: 0;color: #666;padding: 0 17px 0 0;border-right: solid 1px #ddd;border-radius: 0;}
+    			.customSearchInput button:hover{background:transparent;color:#777}
+    			.customSearchInput button .icon{font-size:23px;position: relative;bottom: -2px;}
+          .navigator{font-size: 24px;color:#fff}
+          .navigator a{color:#fff}
+    		</style>
+
+
+        <div class="col-md-6">
+          <div class="navigator">
+            <h1 class="inherit"><a href="{{usiteurl}}" title="{{site.name}}">{{site.name}}</a></h1> >
+            <h2 class="inherit"><a href="{{usiteurl}}/Post/{{post.slug}}" title="{{site.name}}">{{post.title}}</a></h2>
+          </div>
+      	</div>
+    		<div class="col-md-6">
+    			<form class="customSearchInput" action="{{site.url}}/search/" method="get">
+    				<div class="input-group col-md-12">
+    					<input name="Category" value="0" type="hidden">
+    					<input name="SearchIn" value="0" type="hidden">
+    					<input name="keyword" class="form-control input-lg" placeholder="جستجو" type="text">
+    					<span class="input-group-btn">
+    						<button class="btn btn-info btn-lg" type="submit">
+    							<i class="icon ion-ios-search-strong"></i>
+    						</button>
+    					</span>
+    				</div>
+    			</form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+        <div class="container">
+
+    <div class="row"><style type="text/css">
+    			/* PANEL */
+    			.left-panel .panel-default{border-bottom-left-radius:7px; border-bottom-right-radius:7px; border-bottom:2px #DDD solid;border: 1px solid #DDD}
+    			.left-panel .panel-default .panel-body {padding:0; margin:0;}
+    			.left-panel .panel-default .panel-body .col-md-12{margin:0; padding:0;}
+    			.left-panel .panel-default .panel-body .thumbnail{border:none; margin:0; padding:0; position:relative;}
+    			.left-panel .panel img {width:100%}
+    			.left-panel .panel-default .panel-body .icerik-bilgi{margin:30px;}
+    			.icerik-bilgi h2{margin-bottom:30px; color:#333;}
+    			.icerik-bilgi h2:hover{color:#E74C3C; text-decoration:none;}
+    			.icerik-bilgi a:hover{text-decoration:none;}
+    			.icerik-bilgi p{margin-bottom:30px; line-height:25px; font-size:16px;}
+    			.icerik-bilgi .btn-group{float:left;}
+    			.icerik-bilgi .btn-group a{font-size:26px; color:#CCC;}
+    			.icerik-bilgi .btn-group .btn-facebook:hover{color:#3B5998;}
+    			.icerik-bilgi .btn-group .btn-twitter:hover{color:#55ACEE;}
+    			.icerik-bilgi .btn-group .btn-google:hover{color:#DD4B39;}
+    		</style>
+
+    		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-panel">
+    			<div class="panel panel-default">
+    				<div class="panel-body">
+    					<div class="col-md-12">
+    						<div class="thumbnail">
+    							<a href="#" class="corrent_EditLink">{#  #}<img src="{{ postImage(usiteurl , post.image) }}" title="{{post.title}}" >{# <img src="assets/themes/content/e09-1.jpg" class="img-embed" title="عنوان نوشته"> #}</a>
+
+    						</div>
+    						<div class="icerik-bilgi">
+    							<span class="pull-left byekan small">{#  #}{{post.adddate}}{# 1399/02/12 #}</span>
+    							<a href="#"><h2>{#  #}{{post.title}}{#  عنوان نوشته  #}</h2></a>
+
+    							<p class="justify">{#  #}{{ post.content }}{#  متن آزمایشی یه تست ساده برای نمایش متن هستش که برای نمایش اطلاعات الکی استفاده میشه. متن آزمایشی اینجا هم مورد استفاده قرار گرفته است :) زمانی که یه فرد ناشناس بخواهد طراحی را مورد بازبینی قرار دهد این متن ها مفید خواهند بود متن آزمایشی یه تست ساده برای نمایش متن هستش که برای نمایش اطلاعات الکی استفاده میشه. متن آزمایشی اینجا هم مورد استفاده قرار گرفته است :) زمانی که یه فرد ناشناس بخواهد طراحی را مورد بازبینی قرار دهد این متن ها مفید خواهند بود  #}</p>
+    							<div class="btn-group">
+    								<a class="btn btn-social btn-facebook" href="#" data-toggle="tooltip" title="" data-original-title="اشتراک گذاری در فیس بوک"><i class="icon ion-social-facebook"></i></a>
+    								<a class="btn btn-social btn-twitter" href="#" data-toggle="tooltip" title="" data-original-title="اشتراک گذاری در توئیتر"><i class="icon ion-social-twitter"></i></a>
+    								<a class="btn btn-social btn-google" href="#" data-toggle="tooltip" title="" data-original-title="اشتراک گذاری در گوگل"><i class="icon ion-social-googleplus"></i></a>
+    							</div>
+    							<img src="{{post.avatar}}" alt="{{post.author}}" style="width:20px;height: 20px;border-radius: 4px;border:1px solid #ccc"> {#  #}{{post.author}}{# علی احمدی (نام نویسنده) #}
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div></div>
+
+
+    	<div class="row">{#  #}{% for tag in post.tags %}{#  #}
+    		<a class="badge badge-info mr5" href="{{usiteurl}}/tag/{{ urltext(tag.tag) }}">{#  #}{{tag.tag}}{# لینک تگ #}</a>
+    		<twig class="badge badge-info mr5" href="{{usiteurl}}/tag/{{ urltext(tag.tag) }}">لینک تگ</twig>
+      {#  #}{% endfor %}{#   #}</div>
+
+
+
+
+
+
+
+
+
+
+    <div class="row">{# <helper>name:comments411-sorting:-paging:</helper> #}{% if comments411 | length > 0 %}{#     #}
+
+    		<style type="text/css">
+    			.commentsListB .commentsTitle{font-size:16px}
+    			.commentsListB .thumbnail{padding:0}
+    			.commentsListB .thumbnail img{border-radius:4px}
+    			.commentsListB .card{position:relative}
+    			.commentsListB .card>.card-header > h4{font-size:18px}
+    			.commentsListB .card>.card-header > h4 > time{float:left;font-family:&#39;BYekan&#39;,BYekan;font-size:12px;margin-top:6px}
+
+    		</style>
+    		<div class="container commentsListB">
+    			<div class="row">
+    				<div class="col-sm-12">
+    					<h3 class="commentsTitle byekan"><i class="icon ion-android-textsms size-21 ml5"></i> نظرات کاربران :</h3>
+    				</div>
+    				<!-- /col-sm-12 -->
+    			</div>
+
+
+
+    			{#  #}{% set loopCount = 5 %}{#     #}
+    			{#  #}{% for comment in comments411 | slice(0, loopCount) %}{#     #}
+
+
+    			<div class="row">
+    				<div class="col-sm-1">
+    					<div class="thumbnail">
+    						<img class="img-responsive" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+    					</div>
+    				</div>
+
+    				<div class="col-sm-11">
+    					<div class="card">
+    						<div class="card-header">
+                              <h4>{#  #}{{comment.user.name}}{#  نام کاربر #} <time class="text-muted byekan">{#  #}{{comment.adddate}} {{comment.addtime}}{# 5 دی 95 #}</time></h4>
+    						</div>
+    						<div class="card-block">
+    							<p class="card-text">{#  #}{{comment.comment}}{#  محتوای نظر کاربر اینجا واقع میشود تا تستی باشد برای نمایش تست بودن نظرات ..  #}</p>
+    						</div>
+    					</div>
+    				</div>
+              	</div>
+    			{#  #}{% endfor %}{#     #}
+
+
+    			<!-- moreComments -->
+    			{#  #}{% if (comment|length) > loopCount %}{#     #}
+    			<div class="col-md-12 center">
+    				<div style="background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAHCAYAAADNufepAAAAEklEQVQImWPYtGnTfwbCgAxlAMi+CUB7sDE0AAAAAElFTkSuQmCC) repeat-x;height:12px;width: 100%;margin: 15px auto;"></div>
+
+
+    				<a class="btn btn-primary btn-sm" href="#">نمایش بیشتر</a>
+    			</div>
+    			{#  #}{% endif %}{#     #}
+
+
+    		</div>
+
+    		{#  #}{% else %}{#     #}
+    		<div class="nocomment">
+    			<!-- nopost -->
+    			<div class="col-md-12 blogShort">
+    				<br><br><blockquote><blockquote><blockquote><blockquote><blockquote> هیچ نظری وجود ندارد .<br></blockquote></blockquote></blockquote></blockquote></blockquote><br><br></div>
+    		</div>
+
+
+    		{#  #}{% endif %}{#     #}</div>
+    	<div class="row mb25">
+      <style type="text/css">
+    			.card>.card-header > h4{font-size:18px}
+
+    			.submitComment input,.submitComment textarea{border-radius: 3px;border:1px solid #ccc;padding: 5px;width:100%;font-size: 13px}
+    			.submitComment  textarea{margin-top: 10px}
+    			.commentsListB .commentsTitle{font-size:16px}
+    			.commentsListB .thumbnail{padding:0}
+    			.commentsListB .thumbnail img{border-radius:4px}
+    			.submitComment .card{position:relative}
+    			.submitComment .card>.card-header > h4 > time{float:left;font-family:&#39;BYekan&#39;,BYekan;font-size:12px;margin-top:6px}
+
+    		</style>
+    		<form class="submitComment col-sm-12 col-xs-12" method="post">
+    			<div class="card">
+    				<div class="card-header">
+    					<h4> درج نظر<br></h4>
+    				</div>
+            <input name="action" value="addComment" type="hidden">
+            <input name="CSRF_Token" value="{{csrf}}" type="hidden">
+            <input name="pid" value="{{post.pid}}" type="hidden">
+    				<div class="card-block row">
+    					<div class="col-sm-6">
+    						<input class="byekan" name="name" placeholder="اسمتون" type="text">
+    					</div>
+    					<div class="col-sm-6">
+    						<input class="byekan" name="email" placeholder="ایمیلتون" type="text">
+    					</div>
+    					<div class="col-md-12">
+    						<textarea name="comment" class="byekan"></textarea>
+    					</div>
+    				</div>
+
+    				<div class="card-footer mt5">
+    					<button type="submit" class="btn btn-sm btn-danger" style="border-radius: 3.2px;">درج نظر</button>
+    				</div>
+    			</div>
+
+    		</form></div>
+      </div>

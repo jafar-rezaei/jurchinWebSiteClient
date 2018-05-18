@@ -1,0 +1,130 @@
+<!-- text , password , submit , reset , button , number , date , url , color , ...  -->
+{% macro input(name, value, type, placeholder, id, class, require, min, max) %}
+  <input type="{{ type|default('text') }}" name="{{ name }}" id="{{ id|default(name) }}" placeholder="{{placeholder|e}}" value="{{ value|e }}" class="{{ class }}" {% if type == "number" %} min="{{min}}" max="{{max}}"{% endif %} {% if require %} required="required" {% endif %}/>
+{% endmacro %}
+
+
+
+<!-- textarea -->
+{% macro textarea(name, value, class, id, require) %}
+  <textarea name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}">{{ value|e }}</textarea>
+{% endmacro %}
+
+
+
+<!-- label -->
+{% macro label(id, content, class) %}
+  <label for="{{ id }}" class="{{ class }}">{{ content|e }}</label>
+{% endmacro %}
+
+
+
+<!-- checkbox -->
+{% macro checkbox(name, value, id, class) %}
+  <input type="checkbox" name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}" value="1"{% if value %} checked="checked"{% endif %} />
+{% endmacro %}
+
+
+
+<!-- select box -->
+{% macro select(name, values, curentValue, id, class) %}
+  <select name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}">
+    {% for v in values %}
+    <option value="{{ v.key }}"{% if curentValue == v.key %} selected="selected"{% endif %}>{{ v.name }}</option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+
+
+<!-- radio -->
+{% macro radio(name, values, curentValue, id, class) %}
+
+  {% for v in values %}
+  <label {% if value == v.key %} class="selected" {% endif %} >
+  	<input type="radio" name="{{ name }}" id="{{ id|default(name) ~ v.key }}" value="{{ v.key }}"{% if curentValue == v.key %} checked="checked"{% endif %} />
+  	{{ v.label }}
+  </label>
+  {% endfor %}
+
+{% endmacro %}
+
+
+
+<!-- ### ADMIN ONLY MACRO'S -->
+
+<!-- admin : text , password , submit , reset , button , number , date , url , color , ...  -->
+{% macro admin_input(user, name, value, type, placeholder, id, class, require, min, max) %}
+  {% set ifNotAdmin = 'خطای دسترسی' %}
+
+  {% if user.group == 1 %}
+    <input type="{{ type|default('text') }}" name="{{ name }}" id="{{ id|default(name) }}" placeholder="{{placeholder|e}}" value="{{ value|e }}" class="{{ class }}" {% if type == "number" %} min="{{min}}" max="{{max}}"{% endif %} {% if require %} required="required" {% endif %}/>
+  {% else %}
+    {{ifNotAdmin}}
+  {% endif %}
+
+{% endmacro %}
+
+
+<!-- admin textarea -->
+{% macro admin_textarea(user, name, value, class, id, require) %}
+  {% set ifNotAdmin = 'خطای دسترسی' %}
+
+  {% if user.group == 1 %}
+    <textarea name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}">{{ value|e }}</textarea>
+  {% else %}
+    {{ifNotAdmin}}
+  {% endif %}
+
+{% endmacro %}
+
+
+<!-- admin checkbox -->
+{% macro admin_checkbox(user, name, value, id, class) %}
+  {% set ifNotAdmin = 'خطای دسترسی' %}
+
+  {% if user.group == 1 %}
+    <input type="checkbox" name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}" value="1"{% if value %} checked="checked"{% endif %} />
+  {% else %}
+    {{ifNotAdmin}}
+  {% endif %}
+
+{% endmacro %}
+
+
+
+<!-- admin select box -->
+{% macro admin_select(user, name, values, curentValue, id, class) %}
+  {% set ifNotAdmin = 'خطای دسترسی' %}
+
+  {% if user.group == 1 %}
+    <select name="{{ name }}" id="{{ id|default(name) }}" class="{{ class }}">
+      {% for v in values %}
+      <option value="{{ v.key }}"{% if curentValue == v.key %} selected="selected"{% endif %}>{{ v.name }}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+    {{ifNotAdmin}}
+  {% endif %}
+
+{% endmacro %}
+
+
+
+<!-- admin radio -->
+{% macro admin_radio(user, name, values, curentValue, id, class) %}
+  {% set ifNotAdmin = 'خطای دسترسی' %}
+
+  {% if user.group == 1 %}
+    {% for v in values %}
+    <label {% if value == v.key %} class="selected" {% endif %} >
+      <input type="radio" name="{{ name }}" id="{{ id|default(name) ~ v.key }}" value="{{ v.key }}"{% if curentValue == v.key %} checked="checked"{% endif %} />
+      {{ v.label }}
+    </label>
+    {% endfor %}
+  {% else %}
+    {{ifNotAdmin}}
+  {% endif %}
+
+{% endmacro %}
+

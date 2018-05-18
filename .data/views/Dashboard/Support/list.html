@@ -1,0 +1,128 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-header" data-background-color="purple">
+							<div class="gridBg">
+								<a href="{{siteurl}}Dashboard/Support/new" class="btn btn-info btn-round pull-left btnNewX irsans">درخواست پشتیبانی</a>
+								<h4 class="title">{{pageTitle}}</h4>
+								<p class="category">{{pageDes}}</p>
+							</div>
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-12">
+									
+									<br/>
+									
+									<label class="tableSearchInput mt15">جستجو: <input id="myInputTextField" type="text"></label>
+
+									<table data-jrSetting="none" data-persianLetter="0,1,2" data-persianNum="3" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th class="jrLetter">
+													عنوان
+												</th>
+												<th class="jrDate">
+													بخش مربوطه
+												</th>
+
+												<th>
+													وضعیت
+												</th>
+
+												<th>
+													تاریخ
+												</th>
+
+												<th>
+													گزینه ها
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+
+										{% if tickets|length > 0 %}
+										{% for ticket in tickets %}
+
+											<tr data-id="{{ticket.id}}">
+												<td class="title" style="width: 30%">
+													<a href="{{siteurl}}Dashboard/Support/Show/id:{{ticket.id}}">
+														{{ticket.title}}
+													</a>
+												</td>
+												<td>
+													{{ticket.cat}}
+												</td>
+												
+												<td>
+													{% if ticket.status == "closed" %}
+													<div class="label label-default">بسته شده</div>
+													{% elseif ticket.status == "uSend" %}
+													<div class="label label-warning">باز</div>
+													{% else %}
+													<div class="label label-success">پاسخ داده شده</div>
+													{% endif %}
+												</td>
+
+												<td>
+													{{ticket.date}}
+												</td>
+
+												<td class="center">
+
+													<a href="{{siteurl}}Dashboard/Support/Show/id:{{ticket.id}}" rel="tooltip" title="مشاهده" class="btn btn-round btn-success btn-fab btn-fab-mini">
+														<i class="material-icons">search</i>
+													</a>
+
+													<span rel="tooltip" title="بستن" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-toggle="modal" data-action="close">
+														<i class="material-icons" >close</i>
+													</span>
+
+													<span rel="tooltip" title="حذف" class="btn btn-round btn-danger btn-fab btn-fab-mini" data-toggle="modal" data-action="delete">
+														<i class="material-icons" >delete</i>
+													</span>
+												</td>
+											</tr>
+										{% endfor %}
+									{% else %}
+											<tr>
+												<td>تیکت وجود ندارد</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+									{% endif %}
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			{{ include('/partials/footer.html')}}
+			
+		</div>
+	</div>
+	
+{{ include('/partials/pageEnd.html')}}

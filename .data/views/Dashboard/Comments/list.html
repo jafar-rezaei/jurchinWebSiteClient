@@ -1,0 +1,119 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+			
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-header" data-background-color="purple">
+							<div class="gridBg">
+								<h4 class="title">{{pageTitle}}</h4>
+								<p class="category">{{pageDes}}</p>
+							</div>
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+
+									
+									<div class="left" style="position: relative;top: 30px;">
+										<div class="btn btn-success btn-round showAnother" data-show="tableSettingMenu" rel="tooltip" title="تنظیمات" >
+										   <i class="material-icons">settings</i>
+										</div>
+									</div>
+
+									<label class="tableSearchInput">جستجو: <input id="myInputTextField" type="text"></label>
+
+									<div id="tableSettingMenu" style="display: none">
+									</div>
+
+
+									<table data-jrSetting="letter,date" data-persianLetter="0,1" data-persianNum="2" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th class="jrLetter">
+													کاربر
+												</th>
+												<th>
+													نظر
+												</th>
+												<th class="jrCount">
+													پاسخ ها
+												</th>
+												<th class="jrDate">
+													تاریخ نظر
+												</th>
+												<th>
+													گزینه ها
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% if Comments|length > 0 %}
+										{% for Comment in Comments %}
+
+											<tr data-id="{{Comment.cid}}" data-answers='{ {% for c in Comment.answers %} "{{c.acid}}" : [{"date": "{{c.date}}" , "answer":"{{c.comment}}" }]{% if loop.index != Comment.answers|length %}, {% endif %} {% endfor %} }'>
+												<td class="username">{{Comment.username}}</td>
+												<td class="comment"  data-comment="{{Comment.comment}}">
+													<a data-toggle="modal" data-action="show">{{Comment.comment}}</a>
+												</td>
+												<td>
+													{{Comment.answers|length }}
+												</td>
+												<td>
+													{{Comment.date}}
+												</td>
+												<td class="center">
+
+													<span rel="tooltip" title="مشاهده" class="btn btn-round btn-success btn-fab btn-fab-mini" data-toggle="modal" data-action="show">
+														<i class="material-icons">search</i>
+													</span>
+
+													<span rel="tooltip" title="ویرایش" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-toggle="modal" data-action="edit">
+														<i class="material-icons" >edit</i>
+													</span>
+
+													<span rel="tooltip" title="حذف" class="btn btn-round btn-danger btn-fab btn-fab-mini" data-toggle="modal" data-action="delete">
+														<i class="material-icons" >delete</i>
+													</span>
+												</td>
+											</tr>
+										{% endfor %}
+									{% else %}
+											<tr>
+												<td>هیج نظری وجود ندارد</td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+									{% endif %}
+
+
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			{{ include('/partials/footer.html')}}
+			
+		</div>
+	</div>
+	
+{{ include('/partials/pageEnd.html')}}

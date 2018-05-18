@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Behdad-Regular';
+  src: local('Behdad'), local('Behdad-Regular'), url('Behdad-Regular.eot?#') format('eot'),
+  url('Behdad-Regular.ttf') format('truetype'),
+  url('Behdad-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

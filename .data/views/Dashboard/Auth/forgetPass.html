@@ -1,0 +1,97 @@
+{{ include('/partials/header.html')}}
+
+<body class="signup-page">
+
+	<nav class="navbar navbar-transparent navbar-absolute">
+    	<div class="container">
+        	<div class="navbar-header">
+        		<a class="navbar-brand" href="http://jurchin.com">سایت ساز جورچین</a>
+        	</div>
+
+
+    		<ul class="nav navbar-nav navbar-left">
+				<li>
+					<a class="btn btn-default btn-sm" href="{{siteurl}}auth/register" >
+						عضویت در سامانه
+					</a>
+				</li>
+    		</ul>
+
+    	</div>
+    </nav>
+
+    <div class="wrapper">
+		<div class="header header-filter" style="background-image: url('{{siteurl}}public/img/bg1.jpeg'); background-size: cover; background-position: top center;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3" style="float: none">
+						<div class="card card-signup">
+
+                            <div class="card-header center" data-background-color="purple">
+                                <h4>فراموشی رمز</h4>
+                            </div>
+
+							<form class="form" method="post" name="loginform">
+								<p class="text-divider">{{messages}}</p>
+								<input type="hidden" name="CSRF_Token" value="{{csrf.2}}" />
+								<div class="content">
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">email</i>
+										</span>
+										<input type="text" name="user_name" class="form-control" placeholder="آدرس ایمیل...">
+									</div>
+									
+									<div class="input-group">
+										<div class="g-recaptcha byekan" data-sitekey="6LfycRcUAAAAAPyQ0hik6LQUuljJFvjIXrkfy6BU"></div>
+
+									</div>
+								</div>
+								<div class="footer text-center">
+									<button type="submit" name="login" class="btn btn-simple btn-primary btn-lg">ادامه</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- auth footer -->
+			<footer class="footer">
+		        <div class="container">
+		            <nav class="pull-left links">
+						<ul>
+							<li>
+								<a href="http://www.jurchin.com">
+									جورچین
+								</a>
+							</li>
+							<li>
+								<a href="http://jurchin.com/laws">
+								   قوانین استفاده
+								</a>
+							</li>
+							<li>
+								<a href="http://blog.creative-tim.com">
+								   سوالات متداول
+								</a>
+							</li>
+							<li>
+								<a href="http://blog.jurchin.com">
+									بلاگ
+								</a>
+							</li>
+						</ul>
+		            </nav>
+		            <div class="copyright pull-right">
+		                &copy; ۱۳۹۵, ساخته شده با <i class="fa fa-heart heart"></i> در <a href="http://jurchin.com" target="_blank">جورچین</a>
+		            </div>
+		        </div>
+		    </footer>
+
+		</div>
+
+    </div>
+	
+	<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+{{ include('/partials/pageEnd.html')}}

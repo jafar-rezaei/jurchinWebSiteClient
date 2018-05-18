@@ -1,0 +1,104 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-header" data-background-color="purple">
+							<div class="gridBg">
+								<span class="btn btn-info btn-round pull-left btnNewX irsans" data-toggle="modal" data-action="new">صفحه جدید</span>
+								<h4 class="title">{{pageTitle}}</h4>
+								<p class="category">{{pageDes}}</p>
+							</div>
+						</div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+
+
+									<br/>
+
+									<label class="mt15 tableSearchInput">جستجو: <input id="myInputTextField" type="text"></label>
+
+
+									<table data-jrSetting="none" data-persianLetter="0" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th>
+													عنوان صفحه
+												</th>
+												<th>
+													لینک
+												</th>
+												<th>
+													گزینه ها
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% for page in pages %}
+											<tr data-id="{{page.name}}" data-info='{"title":"{{page.info.title}}","description":"{{page.info.description}}","keywords":"{{page.info.keywords}}","tempname":"{{page.info.tempname}}","address" : "{{page.name}}"}'>
+												<td class="title" >
+													<span rel="tooltip" title="{{page.info.description}}">
+													{% if page.info.title == "{{post.title}}" %}
+														صفحه نمایش پست
+													{% elseif page.info.title == "{{search.title}}" %}
+														صفحه نتایج جستجو
+													{% elseif page.info.title == "---" %}
+														صفحه چارجوب
+													{% else %}
+														{{page.info.title}}
+													{% endif %}
+													</span>
+												</td>
+												<td class="address">
+													<a href="{{usersite}}/{{page.name}}" target="_blank">
+														{{usersite}}/{{page.name}}
+													</a>
+												</td>
+												<td class="center">
+													<a href="http://www.jurchin.com/editor/manager/page:{{page.name}}-{{remoteData}}" rel="tooltip" title="ویرایش استایل" class="btn btn-round btn-warning btn-fab btn-fab-mini" target="_blank">
+														<i class="material-icons" >brush</i>
+													</a>
+
+													{% if page.name not in ["post","search"] %}
+													<span rel="tooltip" title="ویرایش اطلاعات" class="btn btn-round btn-primary btn-fab btn-fab-mini" data-toggle="modal" data-action="edit">
+														<i class="material-icons" >edit</i>
+													</span>
+													{% endif %}
+
+													{% if page.name not in ["index","post","search","temp"] %}
+													<span rel="tooltip" title="حذف" class="btn btn-round btn-danger btn-fab btn-fab-mini" data-toggle="modal" data-action="delete">
+														<i class="material-icons" >delete</i>
+													</span>
+													{% endif %}
+												</td>
+											</tr>
+										{% endfor %}
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+{{ include('/partials/pageEnd.html')}}

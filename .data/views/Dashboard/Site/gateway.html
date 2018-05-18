@@ -1,0 +1,105 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+		<div class="main-panel" >
+
+			{{ include('/partials/navbar.html')}}
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-md-12 col-sm-12 col-xs-12">
+
+							<form role="form" class="jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="Dashboard/Site/Setting">
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<h4 class="title">{{pageTitle}}</h4>
+											<p class="category">{{pageDes}}</p>
+										</div>
+									</div>
+									<div class="card-content">
+
+										<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+										<input type="hidden" name="action" value="{{parameter.Action}}" />
+										{% if parameter.Action == "edit" or parameter.Action == "delete" %}
+
+										<input type="hidden" name="gid" value="{{parameter.gid}}" />
+										{% endif %}
+
+
+										{% if parameter.Action != "delete" %}
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+													<label class="control-label byekan" for="sitetitle">نام درگاه :</label>
+													<input type="text" class="form-control" name="name" value="{{gateway.name}}" />
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="chooseKind">نوع درگاه : </label>
+												<div class="form-group">
+													<select id="chooseKind" name="kind">
+														<option value="pay.ir" {% if gateway.kind == 'pay.ir' %}selected{% endif %}>pay.ir</option>
+														<option value="zarinpal" {% if gateway.kind == 'zarinpal' %}selected{% endif %}>zarinpal</option>
+														<option value="arianpal" {% if gateway.kind == 'arianpal' %}selected{% endif %}>arianpal</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+													<label class="control-label byekan" for="apikey">کد مرجع/شناسه api</label>
+													<input type="text" class="form-control" id="apikey" name="apikey" value="{{gateway.dataArray.apikey}}" />
+												</div>
+											</div>
+										</div>
+										{% else %}
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" >درگاه حذف شود ؟</label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="doDeleteYes" name="doDelete" value="1" />
+													<label for="doDeleteYes"><span><i class="fa fa-check ml5"></i>بلی</span></label>
+
+													<input type="radio" id="doDeleteNo" class="ml5" name="doDelete" value="0"  />
+													<label for="doDeleteNo" class="mr5"><span><i class="fa fa-times ml5"></i>خیر</span></label>
+												</div>
+											</div>
+										</div>
+										{% endif %}
+
+										<button type="submit" class="btn btn-primary pull-right">ذخیره تنظیمات</button>
+										<div class="clearfix"></div>
+
+									</div>
+								</div>
+							</form>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+
+{{ include('/partials/pageEnd.html')}}

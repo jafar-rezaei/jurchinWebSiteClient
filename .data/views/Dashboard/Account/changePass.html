@@ -1,0 +1,80 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		<div class="main-panel" style="width: 100%">
+
+			{{ include('/partials/navbar.html')}}
+
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<h4 class="title">{{pageTitle}}</h4>
+											<p class="category">{{pageDes}}</p>
+										</div>
+									</div>
+									<div class="card-content">
+										<form class="jrAjax" role="form" action="{{canonical | evaluate }}" method="POST" data-route="Dashboard/Site">
+
+											<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+											<div class="row">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="form-group label-floating">
+														<label class="control-label">رمز عبور قبلی</label>
+														<input type="password" class="form-control" name="oldPass" >
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="form-group label-floating">
+														<label class="control-label">رمز جدید</label>
+														<input type="password" class="form-control" name="newPass" >
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="form-group label-floating">
+														<label class="control-label">تکرار رمز</label>
+														<input type="password" class="form-control" name="newPassRepeat" >
+													</div>
+												</div>
+											</div>
+
+
+											<div class="row">
+												<div class="col-md-12 col-sm-12">
+													<div class="form-group label-floating">
+														<div class="g-recaptcha byekan" data-sitekey="6LfycRcUAAAAAPyQ0hik6LQUuljJFvjIXrkfy6BU"></div>
+													</div>
+												</div>
+											</div>
+
+
+
+											<button type="submit" class="btn btn-primary pull-right">تغییر رمزعبور</button>
+											<div class="clearfix"></div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+	<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+
+{{ include('/partials/pageEnd.html')}}

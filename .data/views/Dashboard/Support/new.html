@@ -1,0 +1,113 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+
+		<div class="main-panel">
+
+			{{ include('/partials/navbar.html')}}
+
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<form role="form" action="{{siteurl}}Dashboard/Support" method="POST" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-8 col-xs-12 col-sm-12">
+								<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+								<input type="hidden" name="action" value="new" />
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<h4 class="title">{{pageTitle}}</h4>
+											<p class="category">{{pageDes}}</p>
+										</div>
+									</div>
+									<div class="card-content">
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group label-floating">
+													<label class="control-label">عنوان درخواست</label>
+													<input type="text" name="ticketTitle" class="form-control" >
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6 col-xs-12 col-sm-12">
+												<div class="form-group label-floating">
+													<label class="control-labels">واحد مربوطه</label>
+													<select name="ticketDepartment" style="width: 98%;margin:auto 1%">
+													{% for ticketCat in ticketCats %}
+														<option value="{{ticketCat.id}}">{{ticketCat.name}}</option>
+													{% endfor %}
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6 col-xs-12 col-sm-12">
+												<div class="form-group label-floating">
+													<label class="control-labels">اولویت</label>
+													<select name="ticketPrioerity" style="width: 98%;margin:auto 1%">
+														<option>بالا</option>
+														<option>متوسط</option>
+														<option>پایین</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+													<div class="form-group label-floating">
+														<label class="control-label"> متن درخواست ...</label>
+														<textarea name="ticketContent" class="form-control" rows="5" name="postContent"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<button type="submit" class="btn btn-primary pull-right">ارسال درخواست</button>
+										<div class="clearfix"></div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+
+								<div class="card">
+
+									<div class="content center">
+										<h4 class="card-title">بارگذاری عکس</h4>
+										<h6 class="category text-gray irsans">حداکثر تا ۵مگابایت</h6>
+										<label for="uploadFile" id="previewAX" class="card-content uploadPicPost">
+											انتخاب عکس
+										</label>
+										<input type="file" name="ticketAttach" class="file_Upload" id="uploadFile" style="display: none;" />
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+	<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+
+{{ include('/partials/pageEnd.html')}}

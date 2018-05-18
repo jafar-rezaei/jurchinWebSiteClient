@@ -1,0 +1,850 @@
+{{ include('/partials/header.html')}}
+
+<body >
+
+	<div class="wrapper">
+
+		{{ include('/partials/sidebar.html')}}
+		<div class="main-panel" >
+
+			{{ include('/partials/navbar.html')}}
+
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="col-md-8 col-sm-12 col-xs-12">
+
+
+							<form role="form" class="jrAjax" action="{{canonical | evaluate}}" method="POST" data-route="Dashboard/Site/Setting">
+								<div class="card">
+									<div class="card-header" data-background-color="purple">
+										<div class="gridBg">
+											<h4 class="title">تنظیمات سایت</h4>
+											<p class="category">ویرایش تنظیمات کلی وبسایت شما</p>
+										</div>
+									</div>
+									<div class="card-content">
+
+										<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+													<label class="control-label byekan" for="sitetitle">عنوان سایت :</label>
+													<input type="text" class="form-control" name="name" value="{{settings.name}}" />
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+													<label class="control-label byekan" for="sitemail">رایانامه سایت :</label>
+													<input type="text" class="form-control" id="sitemail" name="mail" value="{{settings.mail}}" />
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" >اجازه نام نویسی کاربران </label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="allowUsersRegOk" name="regperm" value="1" {% if settings.regperm == '1' %}checked{% endif %} />
+													<label for="allowUsersRegOk">
+														<span><i class="fa fa-check ml5"></i>بلی</span>
+													</label>
+
+													<input type="radio" id="allowUsersRegNo" class="ml5" name="regperm" value="0" {% if settings.regperm == '0' %}checked{% endif %} />
+													<label for="allowUsersRegNo" class="mr5"><span><i class="fa fa-times ml5"></i>خیر</span></label>
+
+												</div>
+											</div>
+										</div>
+
+										<!-- date time managment -->
+										<div class="block-partition byekan" >
+											<i class="fa fa-calendar-check-o"></i> تنظیمات تاریخ و زمان
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="dateFormat">ساختار زمان</label>
+												<div class="form-group genericRadio">
+
+													<input type="radio" class="ml5" id="dateFormatJY" name="dateFormatChoose" value="j F, Y" {% if settings.dateformat == 'j F, Y' %}checked{% endif %} />
+													<label for="dateFormatJY">
+														<span>
+														{% if lang == "fa" %}
+															{{jdate('j F, Y')}}
+														{% else %}
+															{{ "now"|date('F j, Y')}}
+														{% endif %}
+														</span>
+													</label>
+
+
+													<input type="radio" class="ml5" id="dateFormatYMD" name="dateFormatChoose" value="Y-m-d" {% if settings.dateformat == 'Y-m-d' %}checked{% endif %} />
+													<label for="dateFormatYMD">
+														<span>
+														{% if lang == "fa" %}
+															{{jdate('Y-m-d')}}
+														{% else %}
+															{{ "now"|date('Y-m-d')}}
+														{% endif %}
+														</span>
+													</label>
+
+
+													<input type="radio" class="ml5" id="dateFormatDMY" name="dateFormatChoose" value="Y/m/d" {% if settings.dateformat == 'Y/m/d' %}checked{% endif %} />
+													<label for="dateFormatDMY">
+														<span>
+														{% if lang == "fa" %}
+															{{jdate('Y/m/d')}}
+														{% else %}
+															{{ "now"|date('Y/m/d')}}
+														{% endif %}
+														</span>
+													</label>
+
+													<input type="radio" class="ml5" id="dateFormatMDYb" name="dateFormatChoose" value="m/d/Y" {% if settings.dateformat == 'Y/d/m' %}checked{% endif %} />
+													<label for="dateFormatMDYb">
+														<span>
+														{% if lang == "fa" %}
+															{{jdate('Y/d/m')}}
+														{% else %}
+															{{ "now"|date('Y/d/m')}}
+														{% endif %}
+														</span>
+													</label>
+
+
+
+													<span class="mr15">
+													سفارشی: <input type="text" class="managedNumberField" name="dateFormat" value="{{settings.dateformat}}" />
+													</span>
+
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="timeFormat">ساختار زمان</label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="timeFormatGIAs" name="timeFormatChoose" value="g:i a" {% if settings.timeformat == 'g:i a' %}checked{% endif %} />
+													<label for="timeFormatGIAs">
+														<span>
+														{{jdate('g:i a')}}
+														</span>
+													</label>
+
+													<input type="radio" class="ml5" id="timeFormatGIAl" name="timeFormatChoose" value="g:i A" {% if settings.timeformat == 'g:i A' %}checked{% endif %} />
+													<label for="timeFormatGIAl">
+														<span>
+														{{jdate('g:i A')}}
+														</span>
+													</label>
+
+													<input type="radio" class="ml5" id="timeFormatHI" name="timeFormatChoose" value="H:i" {% if settings.timeformat == 'H:i' %}checked{% endif %} />
+													<label for="timeFormatHI">
+														<span>
+														{{jdate('H:i')}}
+														</span>
+													</label>
+
+													<span class="mr15">
+													سفارشی: <input type="text" class="managedNumberField" name="timeformat" value="{{settings.timeformat}}" />
+													</span>
+												</div>
+											</div>
+										</div>
+
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="langChoose">زبان پیش فرض</label>
+												<div class="form-group">
+													<select id="langChoose" name="language">
+														<option value="fa" {% if settings.language == 'fa' %}selected{% endif %}>فارسی</option>
+														<option value="en" {% if settings.language == 'en' %}selected{% endif %}>English</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<style>
+											select{min-width: 120px}
+											optgroup{padding: 12px;font-family: BYekan ,'BYekan','b yekan';color:#333;font-weight: normal;}
+											optgroup > option{padding:7px;padding-right: 25px !important;color: #555}
+											option{padding:7px;color: #555}
+										</style>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="timeZone">منطقه زمانی</label>
+												<div class="form-group">
+													<select id="timeZone" name="timezone" >
+														<optgroup label="آتلانتیک">آتلانتیک
+															<option value="Atlantic/Azores">آزورس</option>
+															<option value="Atlantic/Stanley">استنلی</option>
+															<option value="Atlantic/Bermuda">برمودا</option>
+															<option value="Atlantic/Reykjavik">ریکیاویک</option>
+															<option value="Atlantic/St_Helena">سنت‌هلنا</option>
+															<option value="Atlantic/Faroe">فارو</option>
+															<option value="Atlantic/Canary">قناری</option>
+															<option value="Atlantic/Madeira">مدیرا</option>
+															<option value="Atlantic/Cape_Verde">کیپ‌ورد</option>
+															<option value="Atlantic/South_Georgia">گرجستان جنوبی</option>
+														</optgroup>
+														<optgroup label="آسیا">آسیا
+															<option value="Asia/Atyrau">Atyrau</option>
+															<option value="Asia/Famagusta">Famagusta</option>
+															<option value="Asia/Yangon">Yangon</option>
+															<option value="Asia/Almaty">آلماآتی</option>
+															<option value="Asia/Anadyr">آنادیر</option>
+															<option value="Asia/Aqtau">آکتائو</option>
+															<option value="Asia/Aqtobe">آکتوبه</option>
+															<option value="Asia/Oral">ارال</option>
+															<option value="Asia/Urumqi">ارومچی</option>
+															<option value="Asia/Srednekolymsk">اسردنکولیمسک</option>
+															<option value="Asia/Omsk">امسک</option>
+															<option value="Asia/Ust-Nera">اوست-نرا</option>
+															<option value="Asia/Ulaanbaatar">اولان‌باتور</option>
+															<option value="Asia/Irkutsk">ایرکتوسک</option>
+															<option value="Asia/Barnaul">بارناول</option>
+															<option value="Asia/Bangkok">بانکوک</option>
+															<option value="Asia/Baku">باکو</option>
+															<option value="Asia/Bahrain">بحرین</option>
+															<option value="Asia/Brunei">برونئی</option>
+															<option value="Asia/Baghdad">بغداد</option>
+															<option value="Asia/Jerusalem">بیت‌المقدس</option>
+															<option value="Asia/Beirut">بیروت</option>
+															<option value="Asia/Bishkek">بیشکک</option>
+															<option value="Asia/Tashkent">تاشکند</option>
+															<option value="Asia/Taipei">تایپه</option>
+															<option value="Asia/Tbilisi">تفلیس</option>
+															<option selected="selected" value="Asia/Tehran">تهران</option>
+															<option value="Asia/Tomsk">تومسک</option>
+															<option value="Asia/Tokyo">توکیو</option>
+															<option value="Asia/Thimphu">تیمفو</option>
+															<option value="Asia/Jakarta">جاکارتا</option>
+															<option value="Asia/Jayapura">جایاپورا</option>
+															<option value="Asia/Khandyga">خاندیگا</option>
+															<option value="Asia/Damascus">داماسکوس</option>
+															<option value="Asia/Dhaka">داکا</option>
+															<option value="Asia/Dubai">دوبی</option>
+															<option value="Asia/Dushanbe">دوشنبه</option>
+															<option value="Asia/Dili">دیلی</option>
+															<option value="Asia/Riyadh">ریاض</option>
+															<option value="Asia/Seoul">سئول</option>
+															<option value="Asia/Sakhalin">ساخالین</option>
+															<option value="Asia/Samarkand">سمرقند</option>
+															<option value="Asia/Singapore">سنگاپور</option>
+															<option value="Asia/Shanghai">شانگهای</option>
+															<option value="Asia/Aden">عدن</option>
+															<option value="Asia/Ashgabat">عشق‌آباد</option>
+															<option value="Asia/Amman">عمان</option>
+															<option value="Asia/Gaza">غزه</option>
+															<option value="Asia/Qatar">قطر</option>
+															<option value="Asia/Qyzylorda">قیزیل‌اوردا</option>
+															<option value="Asia/Manila">مانیل</option>
+															<option value="Asia/Makassar">ماکاسار</option>
+															<option value="Asia/Macau">ماکایو</option>
+															<option value="Asia/Magadan">ماگدان</option>
+															<option value="Asia/Muscat">مسقط</option>
+															<option value="Asia/Novosibirsk">نوووسیبریک</option>
+															<option value="Asia/Novokuznetsk">نووکوزنتسک</option>
+															<option value="Asia/Nicosia">نیکوزیا</option>
+															<option value="Asia/Hebron">هبرون</option>
+															<option value="Asia/Hong_Kong">هنگ‌کنگ</option>
+															<option value="Asia/Hovd">هوود</option>
+															<option value="Asia/Ho_Chi_Minh">هوچی‌مینه</option>
+															<option value="Asia/Vladivostok">ولادی‌وستک</option>
+															<option value="Asia/Vientiane">وین‌تیان</option>
+															<option value="Asia/Phnom_Penh">پنوم‌پن</option>
+															<option value="Asia/Pontianak">پونتیاناک</option>
+															<option value="Asia/Pyongyang">پیونگ‌یانگ</option>
+															<option value="Asia/Choibalsan">چویبالسان</option>
+															<option value="Asia/Chita">چیتا</option>
+															<option value="Asia/Kabul">کابل</option>
+															<option value="Asia/Kathmandu">کاتماندو</option>
+															<option value="Asia/Kamchatka">کامچاتکا</option>
+															<option value="Asia/Krasnoyarsk">کراسنویارسک</option>
+															<option value="Asia/Karachi">کراچی</option>
+															<option value="Asia/Colombo">کلمبو</option>
+															<option value="Asia/Kolkata">کلکته</option>
+															<option value="Asia/Kuala_Lumpur">کوالالامپور</option>
+															<option value="Asia/Kuching">کوچینگ</option>
+															<option value="Asia/Kuwait">کویت</option>
+															<option value="Asia/Yakutsk">یاکوتسک</option>
+															<option value="Asia/Yerevan">یروان</option>
+															<option value="Asia/Yekaterinburg">یکاتریببورگ</option>
+														</optgroup>
+														<optgroup label="آفریقا">آفریقا
+															<option value="Africa/Abidjan">آبیجان</option>
+															<option value="Africa/Addis_Ababa">آدیس آبابا</option>
+															<option value="Africa/Accra">آکرا</option>
+															<option value="Africa/Asmara">اسمرا</option>
+															<option value="Africa/Algiers">الجزایر</option>
+															<option value="Africa/El_Aaiun">العیون</option>
+															<option value="Africa/Ouagadougou">اوآگادوگو</option>
+															<option value="Africa/Bamako">باماکو</option>
+															<option value="Africa/Banjul">بانجول</option>
+															<option value="Africa/Bangui">بانگوی</option>
+															<option value="Africa/Brazzaville">برازاویل</option>
+															<option value="Africa/Blantyre">بلانتایر</option>
+															<option value="Africa/Bujumbura">بوجومبورا</option>
+															<option value="Africa/Bissau">بیسائو</option>
+															<option value="Africa/Tripoli">تریپولی</option>
+															<option value="Africa/Tunis">تونس</option>
+															<option value="Africa/Juba">جوبا</option>
+															<option value="Africa/Djibouti">جیبوتی</option>
+															<option value="Africa/Khartoum">خارطوم</option>
+															<option value="Africa/Dar_es_Salaam">دارالسلام</option>
+															<option value="Africa/Dakar">داکار</option>
+															<option value="Africa/Douala">دوالا</option>
+															<option value="Africa/Ceuta">سئوتا</option>
+															<option value="Africa/Sao_Tome">سائوتومه</option>
+															<option value="Africa/Freetown">فری‌تاون</option>
+															<option value="Africa/Cairo">قاهره</option>
+															<option value="Africa/Lagos">لاگوس</option>
+															<option value="Africa/Luanda">لوآندا</option>
+															<option value="Africa/Lubumbashi">لوبومباشی</option>
+															<option value="Africa/Lusaka">لوساکا</option>
+															<option value="Africa/Lome">لومه</option>
+															<option value="Africa/Libreville">لیبرویل</option>
+															<option value="Africa/Maseru">ماسرو</option>
+															<option value="Africa/Malabo">مالابو</option>
+															<option value="Africa/Monrovia">مانروویا</option>
+															<option value="Africa/Maputo">ماپوتو</option>
+															<option value="Africa/Mbabane">مبابانه</option>
+															<option value="Africa/Mogadishu">موگادیشو</option>
+															<option value="Africa/Nairobi">نایروبی</option>
+															<option value="Africa/Ndjamena">نجامینا</option>
+															<option value="Africa/Nouakchott">نواکشوط‎</option>
+															<option value="Africa/Niamey">نیامی</option>
+															<option value="Africa/Harare">هراره</option>
+															<option value="Africa/Windhoek">ویندهوک</option>
+															<option value="Africa/Porto-Novo">پورتو نووو</option>
+															<option value="Africa/Johannesburg">ژوهانسبورگ</option>
+															<option value="Africa/Casablanca">کازابلانکا</option>
+															<option value="Africa/Kampala">کامپالا</option>
+															<option value="Africa/Conakry">کوناکری</option>
+															<option value="Africa/Kinshasa">کینشازا</option>
+															<option value="Africa/Kigali">کیگالی</option>
+															<option value="Africa/Gaborone">گابورون</option>
+														</optgroup>
+														<optgroup label="اروپا">اروپا
+															<option value="Europe/Saratov">Saratov</option>
+															<option value="Europe/Athens">آتن</option>
+															<option value="Europe/Amsterdam">آمستردام</option>
+															<option value="Europe/Andorra">آندورا</option>
+															<option value="Europe/Istanbul">استانبول</option>
+															<option value="Europe/Astrakhan">استراخان</option>
+															<option value="Europe/Stockholm">استکهلم</option>
+															<option value="Europe/Oslo">اسلو</option>
+															<option value="Europe/Skopje">اسکوپیه</option>
+															<option value="Europe/Ulyanovsk">اولیانوسک</option>
+															<option value="Europe/Uzhgorod">اوژهورود</option>
+															<option value="Europe/Busingen">باسینجن</option>
+															<option value="Europe/Bucharest">بخارست</option>
+															<option value="Europe/Bratislava">براتیسلاوا</option>
+															<option value="Europe/Berlin">برلین</option>
+															<option value="Europe/Brussels">بروکسل</option>
+															<option value="Europe/Belgrade">بلگراد</option>
+															<option value="Europe/Budapest">بوداپست</option>
+															<option value="Europe/Tallinn">تالین</option>
+															<option value="Europe/Tirane">تیرانا</option>
+															<option value="Europe/Gibraltar">جبل‌الطارق</option>
+															<option value="Europe/Jersey">جرسی</option>
+															<option value="Europe/Isle_of_Man">جزیره من</option>
+															<option value="Europe/Dublin">دوبلین</option>
+															<option value="Europe/Rome">رم</option>
+															<option value="Europe/Riga">ریگا</option>
+															<option value="Europe/Zaporozhye">زاکارپاتیا</option>
+															<option value="Europe/Zagreb">زاگرب</option>
+															<option value="Europe/Zurich">زوریخ</option>
+															<option value="Europe/Sarajevo">سارایوو</option>
+															<option value="Europe/Samara">سامارا</option>
+															<option value="Europe/San_Marino">سن‌مارینو</option>
+															<option value="Europe/Simferopol">سیمفروپول</option>
+															<option value="Europe/Sofia">صوفیه</option>
+															<option value="Europe/London">لندن</option>
+															<option value="Europe/Luxembourg">لوکزامبورگ</option>
+															<option value="Europe/Lisbon">لیسبون</option>
+															<option value="Europe/Ljubljana">لیوبلیانا</option>
+															<option value="Europe/Madrid">مادرید</option>
+															<option value="Europe/Mariehamn">ماریهامن</option>
+															<option value="Europe/Malta">مالت</option>
+															<option value="Europe/Moscow">مسکو</option>
+															<option value="Europe/Monaco">موناکو</option>
+															<option value="Europe/Minsk">مینسک</option>
+															<option value="Europe/Helsinki">هلسینکی</option>
+															<option value="Europe/Vatican">واتیکان</option>
+															<option value="Europe/Vaduz">وادوز</option>
+															<option value="Europe/Warsaw">ورشو</option>
+															<option value="Europe/Volgograd">ولگاگراد</option>
+															<option value="Europe/Vilnius">ویلنیوس</option>
+															<option value="Europe/Vienna">وین</option>
+															<option value="Europe/Paris">پاریس</option>
+															<option value="Europe/Prague">پراگ</option>
+															<option value="Europe/Podgorica">پودگوریتسا</option>
+															<option value="Europe/Kaliningrad">کالینینگراد</option>
+															<option value="Europe/Copenhagen">کپنهاگ</option>
+															<option value="Europe/Kirov">کیروف</option>
+															<option value="Europe/Chisinau">کیشینف</option>
+															<option value="Europe/Kiev">کیف</option>
+															<option value="Europe/Guernsey">گرنزی</option>
+														</optgroup>
+														<optgroup label="استرالیا">استرالیا
+															<option value="Australia/Adelaide">آدلاید</option>
+															<option value="Australia/Eucla">ایوکلا</option>
+															<option value="Australia/Broken_Hill">بروکن‌هیل</option>
+															<option value="Australia/Brisbane">بریسبین</option>
+															<option value="Australia/Darwin">داروین</option>
+															<option value="Australia/Sydney">سیدنی</option>
+															<option value="Australia/Lord_Howe">لردهووی</option>
+															<option value="Australia/Lindeman">لیندمن</option>
+															<option value="Australia/Melbourne">ملبورن</option>
+															<option value="Australia/Hobart">هوبارت</option>
+															<option value="Australia/Perth">پرت</option>
+															<option value="Australia/Currie">کوری</option>
+														</optgroup>
+														<optgroup label="اقیانوس آرام">اقیانوس آرام
+															<option value="Pacific/Apia">آپیا</option>
+															<option value="Pacific/Efate">افاته</option>
+															<option value="Pacific/Enderbury">اندربوری</option>
+															<option value="Pacific/Auckland">اوکلند</option>
+															<option value="Pacific/Easter">ایستر</option>
+															<option value="Pacific/Port_Moresby">بندر مورسبی</option>
+															<option value="Pacific/Bougainville">بوگاینویل</option>
+															<option value="Pacific/Tarawa">تاراوا</option>
+															<option value="Pacific/Tahiti">تاهیتی</option>
+															<option value="Pacific/Tongatapu">تونگاتاپو</option>
+															<option value="Pacific/Johnston">جانستون</option>
+															<option value="Pacific/Rarotonga">راروتانگا</option>
+															<option value="Pacific/Saipan">سایپان</option>
+															<option value="Pacific/Fakaofo">فاکااوفو</option>
+															<option value="Pacific/Funafuti">فونافوتی</option>
+															<option value="Pacific/Fiji">فیجی</option>
+															<option value="Pacific/Majuro">ماجورو</option>
+															<option value="Pacific/Marquesas">مارکیساس</option>
+															<option value="Pacific/Midway">میدوی</option>
+															<option value="Pacific/Nauru">نائورو</option>
+															<option value="Pacific/Norfolk">نورفولک</option>
+															<option value="Pacific/Noumea">نومئا</option>
+															<option value="Pacific/Niue">نیواِی</option>
+															<option value="Pacific/Honolulu">هونولولو</option>
+															<option value="Pacific/Wallis">والیس</option>
+															<option value="Pacific/Wake">ویک</option>
+															<option value="Pacific/Palau">پالائو</option>
+															<option value="Pacific/Pohnpei">پانپی</option>
+															<option value="Pacific/Pago_Pago">پاگوپاگو</option>
+															<option value="Pacific/Pitcairn">پیتکرن</option>
+															<option value="Pacific/Chatham">چاتهام</option>
+															<option value="Pacific/Chuuk">چوک</option>
+															<option value="Pacific/Kwajalein">کواجالین</option>
+															<option value="Pacific/Kosrae">کوسایی</option>
+															<option value="Pacific/Kiritimati">کیریتیماتی</option>
+															<option value="Pacific/Galapagos">گالاپاگوس</option>
+															<option value="Pacific/Gambier">گامبیر</option>
+															<option value="Pacific/Guadalcanal">گوادال‌کانال</option>
+															<option value="Pacific/Guam">گوام</option>
+														</optgroup>
+														<optgroup label="امریکا">امریکا
+															<option value="America/Atikokan">آتیکوکان</option>
+															<option value="America/Adak">آداک</option>
+															<option value="America/Araguaina">آراگواینا</option>
+															<option value="America/Aruba">آروبا</option>
+															<option value="America/Argentina/Ushuaia">آرژنتینا - اوشوایا</option>
+															<option value="America/Argentina/Buenos_Aires">آرژنتینا - بوینس‌آیرس</option>
+															<option value="America/Argentina/Tucuman">آرژنتینا - توکومین</option>
+															<option value="America/Argentina/Rio_Gallegos">آرژنتینا - ریوگالگوس</option>
+															<option value="America/Argentina/Salta">آرژنتینا - سالتا</option>
+															<option value="America/Argentina/Jujuy">آرژنتینا - سان‌سالوادور جوجای</option>
+															<option value="America/Argentina/San_Juan">آرژنتینا - سن‌خوآن</option>
+															<option value="America/Argentina/San_Luis">آرژنتینا - سن‌لوییس</option>
+															<option value="America/Argentina/La_Rioja">آرژنتینا - لاریوجا</option>
+															<option value="America/Argentina/Mendoza">آرژنتینا - مندوزا</option>
+															<option value="America/Argentina/Catamarca">آرژنتینا - کاتامارکا</option>
+															<option value="America/Argentina/Cordoba">آرژنتینا - کوردوبا</option>
+															<option value="America/Asuncion">آسونسیون</option>
+															<option value="America/Antigua">آنتیگوا</option>
+															<option value="America/Anguilla">آنگوییلا</option>
+															<option value="America/Edmonton">ادمونتون</option>
+															<option value="America/Scoresbysund">اسکورسبیسوند</option>
+															<option value="America/El_Salvador">السالوادور</option>
+															<option value="America/Anchorage">انکوریج</option>
+															<option value="America/Ojinaga">اوجیناگا</option>
+															<option value="America/Eirunepe">ایرونپ</option>
+															<option value="America/Iqaluit">ایقلیوت</option>
+															<option value="America/Indiana/Indianapolis">ایندیانا - ایندیاناپولیس</option>
+															<option value="America/Indiana/Tell_City">ایندیانا - تل‌سیتی</option>
+															<option value="America/Indiana/Marengo">ایندیانا - مارنگو</option>
+															<option value="America/Indiana/Vevay">ایندیانا - ووای</option>
+															<option value="America/Indiana/Winamac">ایندیانا - ویناماک</option>
+															<option value="America/Indiana/Vincennes">ایندیانا - وینکانس</option>
+															<option value="America/Indiana/Petersburg">ایندیانا - پیترزبورگ</option>
+															<option value="America/Indiana/Knox">ایندیانا - کناکس</option>
+															<option value="America/Inuvik">اینوویک</option>
+															<option value="America/Barbados">باربادوس</option>
+															<option value="America/Bahia">باهیا</option>
+															<option value="America/Bahia_Banderas">باهیا باندراس</option>
+															<option value="America/Blanc-Sablon">بلان-سابلون</option>
+															<option value="America/Belem">بلم</option>
+															<option value="America/Belize">بلیز</option>
+															<option value="America/Boa_Vista">بواویستا</option>
+															<option value="America/Bogota">بوگوتا</option>
+															<option value="America/Boise">بویسی</option>
+															<option value="America/Tortola">تورتولا</option>
+															<option value="America/Toronto">تورنتو</option>
+															<option value="America/Tegucigalpa">تگوسیگالپا</option>
+															<option value="America/Tijuana">تیخوانا</option>
+															<option value="America/Thule">ثولی</option>
+															<option value="America/Jamaica">جاماییکا</option>
+															<option value="America/Swift_Current">جریان سویفت</option>
+															<option value="America/Thunder_Bay">خلیج تاندر</option>
+															<option value="America/Cambridge_Bay">خلیج کمبریج</option>
+															<option value="America/Glace_Bay">خلیج گلیس</option>
+															<option value="America/Danmarkshavn">دانمارک‌شاون</option>
+															<option value="America/Dawson">داوسون</option>
+															<option value="America/Dawson_Creek">داوسون‌کریک</option>
+															<option value="America/North_Dakota/Beulah">داکوتای شمالی - بولا</option>
+															<option value="America/North_Dakota/Center">داکوتای شمالی - سنتر</option>
+															<option value="America/North_Dakota/New_Salem">داکوتای شمالی - نیوسالم</option>
+															<option value="America/Denver">دنور</option>
+															<option value="America/Dominica">دومینیکا</option>
+															<option value="America/Detroit">دیترویت</option>
+															<option value="America/Regina">رجینا</option>
+															<option value="America/Recife">رسیف</option>
+															<option value="America/Rankin_Inlet">رنکین اینلت</option>
+															<option value="America/Resolute">ریزولوت</option>
+															<option value="America/Rainy_River">رینی‌ریور</option>
+															<option value="America/Rio_Branco">ریوبرانکو</option>
+															<option value="America/Sao_Paulo">سائوپائولو</option>
+															<option value="America/Santarem">سانتارم</option>
+															<option value="America/Santo_Domingo">سانتودومینگو</option>
+															<option value="America/Santiago">سانتیاگو</option>
+															<option value="America/St_Barthelemy">سنت‌بارتلمی</option>
+															<option value="America/St_Thomas">سنت‌توماس</option>
+															<option value="America/St_Johns">سنت‌جونز</option>
+															<option value="America/St_Vincent">سنت‌وینسنت</option>
+															<option value="America/St_Kitts">سنت‌کیتز</option>
+															<option value="America/St_Lucia">سن‌لوسیا</option>
+															<option value="America/Sitka">سیتکا</option>
+															<option value="America/Chicago">شیکاگو</option>
+															<option value="America/Fortaleza">فورتالزا</option>
+															<option value="America/Fort_Nelson">فورت نلسون</option>
+															<option value="America/Phoenix">فونیکس</option>
+															<option value="America/La_Paz">لاپاز</option>
+															<option value="America/Los_Angeles">لس آنجلس</option>
+															<option value="America/Lower_Princes">لور پرینسس</option>
+															<option value="America/Lima">لیما</option>
+															<option value="America/Martinique">مارتینیک</option>
+															<option value="America/Marigot">ماریگوت</option>
+															<option value="America/Mazatlan">مازاتلان</option>
+															<option value="America/Maceio">ماسایو</option>
+															<option value="America/Manaus">مانائوس</option>
+															<option value="America/Managua">ماناگوآ</option>
+															<option value="America/Metlakatla">متلاکاتلا</option>
+															<option value="America/Matamoros">متمرس</option>
+															<option value="America/Merida">مریدا</option>
+															<option value="America/Menominee">منومینی</option>
+															<option value="America/Monterrey">مونتاری</option>
+															<option value="America/Montserrat">مونتسرات</option>
+															<option value="America/Montevideo">مونته‌ویدئو</option>
+															<option value="America/Moncton">مونتکان</option>
+															<option value="America/Mexico_City">مکزیکو سیتی</option>
+															<option value="America/Miquelon">میکلن</option>
+															<option value="America/Nassau">ناسائو</option>
+															<option value="America/Noronha">نورونها</option>
+															<option value="America/Nome">نومه</option>
+															<option value="America/New_York">نیویورک</option>
+															<option value="America/Nipigon">نیپیگون</option>
+															<option value="America/Halifax">هالیفاکس</option>
+															<option value="America/Havana">هاوانا</option>
+															<option value="America/Hermosillo">هرموسیلو</option>
+															<option value="America/Whitehorse">وایتهورس</option>
+															<option value="America/Vancouver">ونکوور</option>
+															<option value="America/Winnipeg">وینیپگ</option>
+															<option value="America/Paramaribo">پاراماریبو</option>
+															<option value="America/Panama">پاناما</option>
+															<option value="America/Pangnirtung">پانگنیرتونگ</option>
+															<option value="America/Port_of_Spain">پورت آو اسپین</option>
+															<option value="America/Port-au-Prince">پورتاپرینس</option>
+															<option value="America/Puerto_Rico">پورتوریکو</option>
+															<option value="America/Porto_Velho">پورتو ولهو</option>
+															<option value="America/Chihuahua">چی‌هواهوا</option>
+															<option value="America/Goose_Bay">ژوس بای</option>
+															<option value="America/Juneau">ژونو</option>
+															<option value="America/Caracas">کاراکاس</option>
+															<option value="America/Costa_Rica">کاستاریکا</option>
+															<option value="America/Campo_Grande">کامپوگراند</option>
+															<option value="America/Cancun">کانکون</option>
+															<option value="America/Cayman">کایمان</option>
+															<option value="America/Cayenne">کاین</option>
+															<option value="America/Kralendijk">کرالندیک</option>
+															<option value="America/Creston">کرستون</option>
+															<option value="America/Kentucky/Louisville">کنتاکی - لویی‌ویل</option>
+															<option value="America/Kentucky/Monticello">کنتاکی - مونتیسلو</option>
+															<option value="America/Curacao">کوراکایو</option>
+															<option value="America/Cuiaba">کویابا</option>
+															<option value="America/Grenada">گرانادا</option>
+															<option value="America/Grand_Turk">گراندترک</option>
+															<option value="America/Guatemala">گواتمالا</option>
+															<option value="America/Guadeloupe">گوادالوپ</option>
+															<option value="America/Guayaquil">گوایاکیول</option>
+															<option value="America/Godthab">گودت‌هاب</option>
+															<option value="America/Guyana">گویانا</option>
+															<option value="America/Yakutat">یاکوتات</option>
+															<option value="America/Yellowknife">یلونایف</option>
+														</optgroup>
+														<optgroup label="ایندین">ایندین
+															<option value="Indian/Antananarivo">آنتاناناریوو</option>
+															<option value="Indian/Reunion">رئونیون</option>
+															<option value="Indian/Comoro">قمر</option>
+															<option value="Indian/Mauritius">مائوریتی</option>
+															<option value="Indian/Maldives">مالدیو</option>
+															<option value="Indian/Mahe">ماهه</option>
+															<option value="Indian/Mayotte">مایوت</option>
+															<option value="Indian/Chagos">چاگوس</option>
+															<option value="Indian/Kerguelen">کرگوئلن</option>
+															<option value="Indian/Christmas">کریسمس</option>
+															<option value="Indian/Cocos">کوکوس</option>
+														</optgroup>
+														<optgroup label="جنوبگان">جنوبگان
+															<option value="Antarctica/Troll">ترول</option>
+															<option value="Antarctica/Davis">داویس</option>
+															<option value="Antarctica/DumontDUrville">دومونت دورفیل</option>
+															<option value="Antarctica/Rothera">روترا</option>
+															<option value="Antarctica/Syowa">سیووا</option>
+															<option value="Antarctica/Mawson">ماوسون</option>
+															<option value="Antarctica/Macquarie">مکواری</option>
+															<option value="Antarctica/McMurdo">مک‌موردو</option>
+															<option value="Antarctica/Vostok">وستوک</option>
+															<option value="Antarctica/Palmer">پالمر</option>
+															<option value="Antarctica/Casey">کاسی</option>
+														</optgroup>
+														<optgroup label="شمالگان">شمالگان
+															<option value="Arctic/Longyearbyen">لانگ‌یربین</option>
+														</optgroup>
+													</select>
+
+												</div>
+											</div>
+										</div>
+
+
+										<!-- comments managment -->
+										<div class="block-partition byekan" >
+											<i class="fa fa-comments"></i> تنظیمات نظرات
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" >نظرات به تایید نیاز داشته باشد ؟</label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="activeCommentPermOk" name="comments_active_perm" value="all" {% if settings.comments_active_perm == 'all' %}checked{% endif %} />
+													<label for="activeCommentPermOk">
+														<span><i class="fa fa-check ml5"></i>بلی</span>
+													</label>
+
+													<input type="radio" id="activeCommentPermNo" class="ml5" name="comments_active_perm" value="none" {% if settings.comments_active_perm == 'none' %}checked{% endif %}  />
+													<label for="activeCommentPermNo" class="mr5"><span><i class="fa fa-times ml5"></i>خیر</span></label>
+
+
+													<input type="radio" id="activeCommentPermOnlySpaj" class="ml5" name="comments_active_perm" value="spaj" {% if settings.comments_active_perm == 'spaj' %}checked{% endif %}  />
+													<label for="activeCommentPermOnlySpaj" class="mr5"><span><i class="fa fa-times ml5"></i>فقط جفنگ ها</span></label>
+
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="blackWordsCm">لیست کلمات سیاه نظرات <span style="font-size: 11px">[هر کلمه در یک سطر - این کلمات اگر در نظرات باشد به عنوان جفنگ علامت گذاری میشود .]</span></label>
+												<div class="form-group">
+													<textarea class="form-control" name="comments_black_words" style="min-height: 170px;">{{settings.comments_black_words}}</textarea>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" for="commentMaxLink">دیدگاه دارای بیشتر از </label>
+												<input type="number" class="managedNumberField isnumber" value="{{settings.comments_max_link}}" id="commentMaxLink" name="comments_max_link" />
+												<label class="control-label byekan" for="commentMaxLink">لینک جفنگ علامت گذاری شود ‌</label>
+
+											</div>
+										</div>
+
+
+
+										<!-- Rss and SiteMap -->
+										<div class="block-partition byekan" >
+											<i class="fa fa-cube"></i> تنظیمات نقشه سایت و rss
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" >ایجاد نقشه سایت ؟</label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="doCreateSitemapOk" name="sitemap_perm" value="1" {% if settings.sitemap_perm == '1' %}checked{% endif %} />
+													<label for="doCreateSitemapOk"><span><i class="fa fa-check ml5"></i>بلی</span></label>
+
+													<input type="radio" id="doCreateSitemapNo" class="ml5" name="sitemap_perm" value="0" {% if settings.sitemap_perm == '0' %}checked{% endif %} />
+													<label for="doCreateSitemapNo" class="mr5"><span><i class="fa fa-times ml5"></i>خیر</span></label>
+
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan">آدرس نقشه سایت : <a href="{{usersite}}/sitemap.xml" class="pull-left" target="_blank">{{usersite}}/sitemap.xml</a></label>
+											</div>
+										</div>
+
+
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<label class="control-label byekan" >ایجاد فید RSS ؟</label>
+												<div class="form-group genericRadio">
+													<input type="radio" class="ml5" id="doCreateRssOk" name="rss_perm" value="1" {% if settings.rss_perm == '1' %}checked{% endif %} />
+													<label for="doCreateRssOk"><span><i class="fa fa-check ml5"></i>بلی</span></label>
+
+													<input type="radio" id="doCreateRssNo" class="ml5" name="rss_perm" value="0" {% if settings.rss_perm == '0'  %}checked{% endif %} />
+													<label for="doCreateRssNo" class="mr5"><span><i class="fa fa-times ml5"></i>خیر</span></label>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 col-xs-12 col-sm-12">
+												<div class="form-group">
+
+													<label class="control-label byekan" for="rssPostLimit">تعداد</label>
+													<input type="number" class="managedNumberField isnumber" name="rss_posts_count" value="{{settings.rss_posts_count}}" id="rssPostLimit" />
+													<label class="control-label byekan" for="rssPostLimit">مطلب اخیر در فید RSS درج شود</label>
+
+												</div>
+											</div>
+										</div>
+
+
+
+										<button type="submit" class="btn btn-primary pull-right">ذخیره تنظیمات</button>
+										<div class="clearfix"></div>
+
+									</div>
+								</div>
+							</form>
+
+						</div>
+
+						<div class="col-md-4 col-sm-12 col-xs-12">
+
+							<!-- Upload picture part -->
+							<div class="card">
+								<form enctype="multipart/form-data" action="{{siteurl}}Dashboard/Site/ChangeFavicon" method="post" style="border:1px solid #ccc;padding:5px;">
+
+									<div class="content center">
+										<input type="hidden" name="CSRF_Token" value="{{csrf}}" />
+										<h4 class="card-title">آیکون سایت</h4>
+										<h6 class="category text-gray irsans">حداکثر تا ۵مگابایت</h6>
+										<label for="favicon" id="previewAX" class="card-content uploadPicPost">
+											<img src="{{usersite}}/uploads/favicon/fav_icon-192x192.{{settings.favicon}}" />
+										</label>
+										<input type="file" name="favicon" class="file_Upload" id="favicon" style="display: none;" />
+										<button type="submit" class="btn btn-success" >استفاده از آیکون</button>
+									</div>
+								</form>
+							</div>
+
+							<!-- tlg bot sync part -->
+							<div class="card">
+
+								<div class="content center">
+									<h4 class="card-title">اتصال ربات به مدیریت</h4>
+									<h6 class="category text-gray irsans">
+										امکانی جدید در جورچین<br/>
+										میتونید با اکانت تلگرام خودتون وبسایتتون رو مدیریت کنید.
+									</h6>
+
+									<input type="text" class="form-control align-center center" name="tlg-botKey" value="{{settings.bot_key}}" />
+									<div class="btn btn-success">تولید شناسه جدید</div>
+								</div>
+							</div>
+
+
+							<!-- pay setting part -->
+							<div class="card">
+
+								<div class="content center">
+									<h4 class="card-title">درگاه پرداخت</h4>
+
+									<table style="width:90%;margin:5%" data-jrSetting="count,letter" data-persianLetter="1" data-persianNum="0" class="datatable-jurchin table table-bordered byekan">
+
+										<thead>
+											<tr>
+												<th class="jrCount">
+													شماره
+												</th>
+												<th class="jrLetter">
+													نام درگاه
+												</th>
+												<th>کنترل</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											{% if gateways|length > 0 %}
+											{% for gateway in gateways %}
+											<tr>
+												<td style="width:5%">{{loop.index}}</td>
+												<td>{{gateway.name}}</td>
+												<td>
+													<a href="{{siteurl}}Dashboard/Site/Gateway/Action:delete-gid:{{gateway.id}}" rel="tooltip" data-placement="top" title="حذف"><i class="fa fa-trash red"></i></a>
+													<a href="{{siteurl}}Dashboard/Site/Gateway/Action:edit-gid:{{gateway.id}}" rel="tooltip" data-placement="top" title="ویرایش"><i class="fa fa-pencil red"></i></a>
+												</td>
+											</tr>
+											{% endfor %}
+											{% else %}
+
+											<tr>
+												<td></td>
+												<td>بدون درگاه</td>
+											</tr>
+											{% endif %}
+
+										</tbody>
+									</table>
+
+
+									<a href="{{siteurl}}Dashboard/Site/Gateway/Action:add" class="btn btn-success">درگاه جدید</a>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			{{ include('/partials/footer.html')}}
+
+		</div>
+	</div>
+
+
+{{ include('/partials/pageEnd.html')}}

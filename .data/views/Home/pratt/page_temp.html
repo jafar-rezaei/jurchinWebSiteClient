@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--[if IE 8 ]>
+	<html lang="fa" class="rtl fa no-js ie ie8">
+		<![endif]-->
+    <!--[if IE 9 ]>
+		<html lang="fa" class="rtl fa no-js ie ie9">
+			<![endif]-->
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <!--<![endif]-->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{pageTitle | evaluate }}</title>
+    <!-- Meta -->
+    <meta name="copyright" content="Copyright © Idea proccesors company. All Rights Reserved.">
+    <meta name="author" content="Jafar Rezaei (http://jrezaei.ir)">
+    <meta name="robots" content="index, follow">
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--  Social tags      -->
+    <meta name="keywords" content="{{pageKeyword | evaluate }}">
+    <meta name="description" content="{{pageDes | evaluate }}">
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{pageTitle | evaluate }}">
+    <meta itemprop="description" content="{{pageDes | evaluate }}">
+    <meta itemprop="image" content="{{pageImage | evaluate }}">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{pageTitle | evaluate }}">
+    <meta name="twitter:description" content="{{pageDes | evaluate }}.">
+    <meta name="twitter:image" content="{{pageImage | evaluate }}">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{pageTitle | evaluate }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{usiteurl | evaluate }}">
+    <meta property="og:image" content="{{pageImage | evaluate }}">
+    <meta property="og:description" content="{{pageDes | evaluate }}">
+    <!-- favIcon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.jurchin.com/public/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.jurchin.com/public/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://www.jurchin.com/public/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://www.jurchin.com/public/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://www.jurchin.com/public/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://www.jurchin.com/public/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://www.jurchin.com/public/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://www.jurchin.com/public/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://www.jurchin.com/public/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="http://www.jurchin.com/public/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.jurchin.com/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="http://www.jurchin.com/public/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.jurchin.com/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="http://www.jurchin.com/public/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="http://www.jurchin.com/public/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Stylesheets -->
+    <link href="http://www.jurchin.com/public/css/UsedFonts/fonts.css" rel="stylesheet">
+    <link href="http://www.jurchin.com/public/css/icons/css/jurchinIcons.css" rel="stylesheet">
+    <!-- Fallback JavaScript disabled in Browser -->
+    <noscript>
+        <meta http-equiv="Refresh" content="0; URL=nojs.html">
+    </noscript>
+    <!-- Bootstrap core CSS -->
+    <link href="http://karahrm.ir/public/templates/pratt/assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://karahrm.ir/public/templates/template.css">
+    <!-- Custom styles for this template -->
+    <link href="http://karahrm.ir/public/templates/pratt/assets/css/main.css" rel="stylesheet">
+</head>
+<!-- Fixed navbar -->
+<div id="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{usiteurl}}" title="{{site.name}}"><b><i class="jr-icon-jurchin" style="font-size:40px"></i></b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav byekan">
+                <li class="active"><a href="#home" class="smothscroll">خانه</a></li>
+                <li><a href="#desc" class="smothscroll">توضیح</a></li>
+                <li><a href="#showcase" class="smothScroll">ویترین</a></li>
+                <li><a href="#contact" class="smothScroll">تماس با ما</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+{{pageContent | evaluate}}
+
+<div id="c">
+    <div class="container">
+        <span class="pull-left"><a href=""><i class="fa-instagram"></i></a></span>
+        <p>تمامی حقوق برای <a href="http://idprco.ir">شرکت همراهان ایده پرداز</a> محفوظ می باشد</p>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+				================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://karahrm.ir/public/templates/pratt/assets/js/jquery.min.js"></script>
+<script src="http://karahrm.ir/public/templates/pratt/assets/js/smoothscroll.js"></script>
+<script src="http://karahrm.ir/public/templates/pratt/assets/js/bootstrap.js"></script>
+<script>
+    $('.carousel').carousel({
+        interval: 3500
+    })
+</script>
+
+</html>
